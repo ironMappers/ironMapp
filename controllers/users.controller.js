@@ -1,3 +1,4 @@
+
 const mongoose = require('mongoose')
 const User = require('../models/user.model')
 const mailer = require('../configs/mailer.config');
@@ -64,3 +65,12 @@ module.exports.activateUser = (req, res, next) => {
     
     .catch(error => next)
 }
+
+module.exports.renderLogin = (req, res, next) => {
+    res.render('users/login');
+};
+
+module.exports.renderSignup = (req, res, next) => {
+    res.render('users/signup');
+};
+
