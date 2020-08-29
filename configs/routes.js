@@ -13,4 +13,9 @@ router.get('/', miscController.renderHome);
 router.get('/login', usersController.renderLogin);
 router.get('/signup', usersController.renderSignup);
 
+router.post('/signup', usersController.createUser);
+
+router.get('/users/:id/activate/:token', usersController.activateUser);
+
+
 module.exports = router;
