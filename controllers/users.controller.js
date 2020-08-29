@@ -10,7 +10,7 @@ module.exports.renderSignup = (req, res, next) => {
   res.render('users/signup');
 };
 
-module.exports.create = (req, res, next) => {
+module.exports.createUser = (req, res, next) => {
   const user = new User({
     ...req.body,
     avatar: req.file ? req.file.path : undefined

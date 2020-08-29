@@ -1,7 +1,7 @@
 <article class="container">
   <h1>New user</h1>
 
-  <form action="/users" method="POST"> 
+  <form action="/signup" method="POST">
     <div class="form-group">
       <label for="username">Name</label>
       <input name="username" type="text" value="{{user.username}}" class="form-control {{#if error.username}}is-invalid{{/if}}" id="username" placeholder="Enter name" required>
