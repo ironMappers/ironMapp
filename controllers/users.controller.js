@@ -12,6 +12,7 @@ module.exports.renderSignup = (req, res, next) => {
 };
 
 module.exports.createUser = (req, res, next) => {
+    console.log(req.body)
   const user = new User({
     ...req.body,
     avatar: req.file ? req.file.path : undefined
@@ -45,6 +46,7 @@ module.exports.createUser = (req, res, next) => {
         }
       })
       .catch(next)
+    
 };
 
 module.exports.activateUser = (req, res, next) => {
