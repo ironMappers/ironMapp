@@ -2,11 +2,11 @@ const mongoose = require('mongoose')
 const User = require('../models/user.model')
 const mailer = require('../configs/mailer.config');
 
-module.exports.login = (req, res, next) => {
+module.exports.renderLogin = (req, res, next) => {
   res.render('users/login');
 };
 
-module.exports.signup = (req, res, next) => {
+module.exports.renderSignup = (req, res, next) => {
   res.render('users/signup');
 };
 
@@ -47,21 +47,20 @@ module.exports.create = (req, res, next) => {
 };
 
 module.exports.activateUser = (req, res, next) => {
-  User.findOne({_id: req.params.id, "status.token": req.params.token})
+  User.findOne({"status.token": req.params.token})
     .then(user => {
-        if (user) {
-            user.status.active = true;
-
-            user.save()
-              .then(user => {
-                  res.render('users/login', {message : 'Your account has been activated, log in below!' })
-              })
-              .catch(error => next)
-
-        }else{
-            res.render('/login', {message : 'Invalid link'})
-        }
+      if (user) {
+        user.status.active = true;
+        user.save()
+        .then(newUser => {
+          res.render('users/login', {message : 'Your account has been activated, log in below!' })
+          })
+        .catch(error => next)   
+      }else{
+        res.render('users/login', {message : 'Invalid link'})
+      }
+      
     })
+    
     .catch(error => next)
-
 }
