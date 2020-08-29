@@ -1,12 +1,8 @@
 <div class="container form-wrapper">
-  <form action="/signup" method="POST" enctype="multipart/form-data"> 
+  <form action="/signup" method="POST"> 
     <div class="form-group">
       <label for="username">Username</label>
       <input name="username" type="text" value="{{user.name}}" class="form-control {{#if error.name }}is-invalid{{/if}}" id="name" placeholder="Enter name" required>
-
-    <div class="form-group">
-      <label for="username">Name</label>
-      <input name="username" type="text" value="{{user.username}}" class="form-control {{#if error.username}}is-invalid{{/if}}" id="username" placeholder="Enter name" required>
     </div>
 
     <div class="form-group">

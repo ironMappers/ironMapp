@@ -9,27 +9,31 @@ passport.use(new LocalStrategy(
         }, (err, user) => {
             if (err) {
                 return done(err);
-            }
-            if (!user) {
+            } else if (!user) {
                 return done(null, false, {
                     message: 'Wrong credentials'
                 });
+            } else if (user) {
+                user.checkPassword(password)
+                    .then(result => {
+                        if (result) {
+                            return done(null, user);
+                        } else {
+                            return done(null, false, {
+                                message: 'Wrong credentials'
+                            });
+                        }
+                    });
             }
-            if (!user.checkPassword(password)) {
-                return done(null, false, {
-                    message: 'Wrong credentials'
-                });
-            }
-            return done(null, user);
         });
     }
 ));
 
-passport.serializeUser(function(user, next) {
-  next(null, user);
+passport.serializeUser(function (user, next) {
+    next(null, user);
 });
-passport.deserializeUser(function(user, next) {
-  next(null, user);
+passport.deserializeUser(function (user, next) {
+    next(null, user);
 });
 
 module.exports = passport;
