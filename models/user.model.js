@@ -38,7 +38,7 @@ const userSchema = new mongoose.Schema({
             type: Boolean,
             default: false
         },
-        toke: {
+        token: {
             type: String,
             default: generateToken()
         }
@@ -61,6 +61,8 @@ userSchema.pre('save', function(next) {
                 this.password = hash;
                 next();
             });
+    }else{
+        next()
     }
 });
 

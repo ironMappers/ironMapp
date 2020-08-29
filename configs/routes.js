@@ -20,4 +20,9 @@ router.post('/login', passport.authenticate('local'), usersController.doLogin);
 router.get('/signup', usersController.renderSignup);
 router.post('/signup', usersController.createUser);
 
+router.post('/signup', usersController.createUser);
+
+router.get('/users/:id/activate/:token', usersController.activateUser);
+
+
 module.exports = router;
