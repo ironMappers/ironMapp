@@ -1,16 +1,21 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
-const uploads = multer({dest: './public/uploads'})
-const passport = require('passport');
-
-const session = require('../middlewares/session.middleware')
+const uploads = multer({dest: './public/uploads'});
+const session = require('../middlewares/session.middleware');
+const passport = require('../configs/passport.config');
 
 const miscController = require('../controllers/misc.controller');
-const usersController = require('../controllers/users.controller')
+const usersController = require('../controllers/users.controller');
 
+/*---------------
+    ROUTES
+---------------*/
 router.get('/', miscController.renderHome);
-router.get('/login', usersController.login);
-router.get('/signup', usersController.signup);
+
+/*AUTH*/
+router.get('/login', usersController.renderLogin);
+router.post('/login', passport.authenticate('local'), usersController.doLogin);
+router.get('/signup', usersController.renderSignup);
 
 module.exports = router;
