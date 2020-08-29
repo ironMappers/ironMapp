@@ -12,5 +12,9 @@ const usersController = require('../controllers/users.controller')
 router.get('/', miscController.renderHome);
 router.get('/login', usersController.login);
 router.get('/signup', usersController.signup);
+router.post('/users', usersController.create);
+
+router.get('/users/:id/activate/:token', usersController.activateUser);
+
 
 module.exports = router;

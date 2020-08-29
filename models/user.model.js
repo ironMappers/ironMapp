@@ -38,7 +38,7 @@ const userSchema = new mongoose.Schema({
             type: Boolean,
             default: false
         },
-        toke: {
+        token: {
             type: String,
             default: generateToken()
         }

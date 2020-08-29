@@ -1,5 +1,5 @@
 require('cookie-parser');
-require('dotenv');
+require('dotenv').config();
 require('./configs/db.config');
 const express = require('express');
 const app = express();
