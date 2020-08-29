@@ -16,6 +16,8 @@ router.get('/', miscController.renderHome);
 /*AUTH*/
 router.get('/login', usersController.renderLogin);
 router.post('/login', passport.authenticate('local'), usersController.doLogin);
+
 router.get('/signup', usersController.renderSignup);
+router.post('/signup', usersController.createUser);
 
 module.exports = router;

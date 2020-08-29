@@ -13,6 +13,7 @@ module.exports.renderSignup = (req, res, next) => {
     res.render('users/signup');
 };
 module.exports.createUser = (req, res, next) => {
+    console.log(req.body)
     const newUser = new User(req.body);
     newUser.save()
         .then(() => res.redirect('/login'))
