@@ -4,13 +4,14 @@ const multer = require('multer');
 const uploads = multer({dest: './public/uploads'});
 const passport = require('../configs/passport.config');
 
+const sessionMiddleware = require('../middlewares/session.middleware');
 const miscController = require('../controllers/misc.controller');
 const usersController = require('../controllers/users.controller');
 
 /*---------------
     ROUTES
 ---------------*/
-router.get('/', miscController.renderHome);
+router.get('/', passport.authenticate('local'), miscController.renderHome);
 
 /*AUTH*/
 router.get('/login', usersController.renderLogin);
@@ -22,10 +23,10 @@ router.post('/signup', usersController.createUser);
 
 router.post('/signup', usersController.createUser);
 
-router.get('/users/:id/activate/:token', usersController.activateUser);
 
 /*USER*/
-router.get('/user', (req, res) => res.send(req))
+router.get('/users', usersController.renderDashboard);
+router.get('/users/:id/activate/:token', usersController.activateUser);
 
 
 module.exports = router;

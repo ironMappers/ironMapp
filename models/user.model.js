@@ -9,7 +9,7 @@ const generateToken = () => {
         token += characters[Math.floor(Math.random() * characters.length)];
     }
     return token;
-}
+};
 
 const userSchema = new mongoose.Schema({
     username: {

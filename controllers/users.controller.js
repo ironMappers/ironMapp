@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const User = require('../models/user.model');
 const mailer = require('../configs/mailer.config');
+const passport = require('passport');
 
 module.exports.renderLogin = (req, res, next) => {
     res.render('users/login');
@@ -48,7 +49,7 @@ module.exports.createUser = (req, res, next) => {
                 next(error);
             }
         })
-        .catch(next)
+        .catch(next);
 };
 
 module.exports.activateUser = (req, res, next) => {
@@ -64,24 +65,40 @@ module.exports.activateUser = (req, res, next) => {
                             message: 'Your account has been activated, log in below!'
                         });
                     })
-                    .catch(error => next)
+                    .catch(error => next);
             } else {
                 res.render('users/login', {
                     message: 'Invalid link'
-                })
+                });
             }
 
         })
 
-        .catch(error => next)
-}
+        .catch(error => next);
+};
 
 module.exports.renderLogin = (req, res, next) => {
     res.render('users/login');
 };
-module.exports.doLogin = (req, res, next) => {
-    res.send(req.body)
-};
+
+module.exports.doLogin = (req, res) => {
+    res.send(req.session)
+}
+
+/* module.exports.doLogin = (req, res, next) => {
+  const passportController = passport.authenticate("local", (error, user) => {
+    if (error) {
+      next(error);
+    } else {
+        console.log('holis')
+      req.session.userId = user._id;
+      res.redirect("/");
+    }
+  })
+
+  passportController(req, res, next);
+}; */
+
 module.exports.doLogout = (req, res, next) => {
     req.logout();
     res.redirect('/login');
@@ -89,4 +106,8 @@ module.exports.doLogout = (req, res, next) => {
 
 module.exports.renderSignup = (req, res, next) => {
     res.render('users/signup');
+};
+
+module.exports.renderDashboard = (req, res, next) => {
+    res.send(req.session)
 };

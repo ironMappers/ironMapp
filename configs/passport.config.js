@@ -29,11 +29,18 @@ passport.use(new LocalStrategy(
     }
 ));
 
-passport.serializeUser(function (user, next) {
-    next(null, user);
+passport.serializeUser(function (user, done) {
+    done(null, user._id);
 });
-passport.deserializeUser(function (user, next) {
-    next(null, user);
+passport.deserializeUser(function (id, done) {
+    User.findById(id)
+        .then(user => {
+            done(null, user);
+        })
+        .catch(e => {
+            console.error(e)
+            done(e)
+        });
 });
 
 module.exports = passport;

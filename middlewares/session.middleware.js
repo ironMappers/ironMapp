@@ -1,19 +1,13 @@
-/*const User = require('../models/user.model')
+const User = require('../models/user.model');
+
 
 module.exports.isAuthenticated = (req, res, next) => {
-  User.findById(req.session.userId)
-    .then(user => {
-      if (user) {
-        req.currentUser = user
-        res.locals.currentUser = user
-
-        next()
-      } else {
-        res.redirect('/login')
-      }
-    })
-    .catch(next);
-}
+  if (req.user) {
+    next();
+  } else {
+    res.render('users/login', {message: 'You need to log in'});
+  }
+};
 
 module.exports.isNotAuthenticated = (req, res, next) => {
   User.findById(req.session.userId)
@@ -26,4 +20,4 @@ module.exports.isNotAuthenticated = (req, res, next) => {
     })
     .catch(next);
 };
-*/
+
