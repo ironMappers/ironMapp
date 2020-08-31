@@ -11,11 +11,11 @@ const usersController = require('../controllers/users.controller');
 /*---------------
     ROUTES
 ---------------*/
-router.get('/', passport.authenticate('local'), miscController.renderHome);
+router.get('/', miscController.renderHome);
 
 /*AUTH*/
 router.get('/login', usersController.renderLogin);
-router.post('/login', passport.authenticate('local'), usersController.doLogin);
+router.post('/login', usersController.doLogin);
 router.get('/logout', usersController.doLogout);
 
 router.get('/signup', usersController.renderSignup);

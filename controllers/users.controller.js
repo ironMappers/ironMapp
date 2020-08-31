@@ -81,8 +81,22 @@ module.exports.renderLogin = (req, res, next) => {
     res.render('users/login');
 };
 
-module.exports.doLogin = (req, res) => {
-    res.send(req.session)
+module.exports.doLogin = (req, res, next) => {
+    passport.authenticate('local', (error, user, message) => {
+        if (error) {
+            next(error)
+        } else if (!user) {
+            next(new Error(message));
+        } else {
+            req.login(user, (error) => {
+                if (error) {
+                    next(new Error(error.message));
+                } else {
+                    res.json(req.user);
+                }
+            });
+        }
+    })(req, res, next)
 }
 
 /* module.exports.doLogin = (req, res, next) => {
