@@ -12,7 +12,7 @@ module.exports.renderSignup = (req, res, next) => {
 };
 
 module.exports.createUser = (req, res, next) => {
-    console.log(req.body)
+  console.log(req.body)
   const user = new User({
     ...req.body,
     avatar: req.file ? req.file.path : undefined
@@ -30,6 +30,7 @@ module.exports.createUser = (req, res, next) => {
         res.render('users/login', {message: 'Check your email for activation'})
     })
     .catch((error) => {
+        console.log(error)
         if (error instanceof mongoose.Error.ValidationError) {
           res.render("users/signup", { error: error.errors, user });
         } else if (error.code === 11000) { // error when duplicated user
@@ -44,9 +45,8 @@ module.exports.createUser = (req, res, next) => {
         } else {
           next(error);
         }
-      })
-      .catch(next)
-    
+    })
+    .catch(next)
 };
 
 module.exports.activateUser = (req, res, next) => {
