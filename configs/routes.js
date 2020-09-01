@@ -8,11 +8,12 @@ const session = require('../middlewares/session.middleware');
 
 const miscController = require('../controllers/misc.controller');
 const usersController = require('../controllers/users.controller');
+const fileUploader = require('../configs/cloudinary.config');
 
 router.get('/', miscController.renderHome);
 router.get('/login', usersController.renderLogin);
 router.get('/signup', usersController.renderSignup);
-router.post('/signup', usersController.createUser);
+router.post('/signup', fileUploader.single('avatar'), usersController.createUser);
 router.get('/users/:id/activate/:token', usersController.activateUser);
 
 
