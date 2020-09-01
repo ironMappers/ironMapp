@@ -9,7 +9,7 @@ const generateToken = () => {
         token += characters[Math.floor(Math.random() * characters.length)];
     }
     return token;
-}
+};
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -38,7 +38,7 @@ const userSchema = new mongoose.Schema({
             type: Boolean,
             default: false
         },
-        toke: {
+        token: {
             type: String,
             default: generateToken()
         }
@@ -56,11 +56,13 @@ const userSchema = new mongoose.Schema({
 
 userSchema.pre('save', function(next) {
     if (this.isModified('password')) {
-        bcrypt.hash('password', 10)
+        bcrypt.hash(this.password, 10)
             .then((hash) => {
                 this.password = hash;
                 next();
             });
+    }else{
+        next();
     }
 });
 
