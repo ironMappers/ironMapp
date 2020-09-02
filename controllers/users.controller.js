@@ -25,6 +25,7 @@ module.exports.createUser = (req, res, next) => {
         ...req.body,
         avatar: req.file ? req.file.path : undefined
     });
+    console.log(user)
 
     user.save()
         .then(user => {
