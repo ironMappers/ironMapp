@@ -22,14 +22,11 @@ router.post('/login', sessionMiddleware.isNotAuthenticated, usersController.doLo
 router.get('/logout', sessionMiddleware.isAuthenticated, usersController.doLogout);
 
 router.get('/signup', sessionMiddleware.isNotAuthenticated, usersController.renderSignup);
-router.post('/signup', sessionMiddleware.isNotAuthenticated, usersController.createUser);
+router.post('/signup', sessionMiddleware.isNotAuthenticated, fileUploader.single('avatar'), usersController.createUser);
+router.get('/users/:id/activate/:token', sessionMiddleware.isAuthenticated, usersController.activateUser);
 
 /*USER*/
 router.get('/users/dashboard', sessionMiddleware.isAuthenticated, usersController.renderDashboard);
-router.get('/login', usersController.renderLogin);
-router.get('/signup', usersController.renderSignup);
-router.post('/signup', fileUploader.single('avatar'), usersController.createUser);
-router.get('/users/:id/activate/:token', usersController.activateUser);
 
 
 module.exports = router;
