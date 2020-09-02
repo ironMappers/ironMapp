@@ -12,7 +12,7 @@ module.exports.isAuthenticated = (req, res, next) => {
 
 module.exports.isNotAuthenticated = (req, res, next) => {
   if (!req.currentUser) {
-    next()
+    next();
   } else {
     //should flash "you're already logged in"
     res.redirect('/users/dashboard');
