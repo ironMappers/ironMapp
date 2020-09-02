@@ -13,13 +13,13 @@
 
   <form action="/login" method="POST">
     <div class="form-group">
-      <label for="email">Email</label>
-      <input name="email" type="email" class="form-control {{#if error.email }}is-invalid{{/if}}" id="email"
-        placeholder="Enter email" value="{{ user.email }}" required>
+      <label for="username">Username</label>
+      <input name="username" type="text" class="form-control {{#if error.username }}is-invalid{{/if}}" id="email"
+        placeholder="Enter username" value="{{ user.username }}" required>
   
-      {{#if error.email}}
+      {{#if error.username}}
       <div class="invalid-feedback">
-        {{error.email.message}}
+        {{error.username.message}}
       </div>
       {{/if}}
     </div>

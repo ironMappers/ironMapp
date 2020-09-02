@@ -8,14 +8,14 @@
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="stylesheets/style.css">
     <title>Document</title>
-</head>
+</head> 
 
 <body>
 
     <nav class="d-flex justify-content-between m-2">
         {{> navbar}}
 
-        {{#if user }}
+        {{#if currentUser }}
         {{> userNav}}
         {{else}}
         {{> authNav}}
