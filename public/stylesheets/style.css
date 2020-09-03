@@ -22,3 +22,22 @@ a {
     display: flex;
     justify-content: center;
 }
+
+/*STATION LIST*/
+.station-properties span {
+    color: #4c4c4c;
+    text-decoration: underline;
+}
+
+.card-title{
+    text-align: center;
+    color: blue;
+}
+
+.station-properties {
+    line-height: 1.7rem;
+}
+
+.station-properties li {
+    padding: 0.5rem;
+}

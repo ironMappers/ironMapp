@@ -1,0 +1,43 @@
+<div class="container ">
+    <h1>Stations</h1>
+    <section class="row mx-auto">
+        {{#each stations as |station|}}
+
+        <div class="card col-xl-4 col-lg-6 col-sm-12 mb-3">
+
+            <article class="card-body">
+                <h3 class="card-title">
+                    {{#if station.properties.tags.name}}
+                    {{station.properties.tags.name}}
+                    {{else}}
+                    No Name
+                    {{/if}}
+                </h3>
+
+                <ul class="station-properties">
+                    <li class="d-flex justify-content-between">
+                        <span>
+                            <b>Type:</b> {{station.properties.type}}
+                        </span>
+                        <span>
+                            <b>id:</b> {{station.properties.id}}
+                        </span>
+                    </li>
+
+                    <li><b>Addr:</b>
+                        {{#if station.properties.tags.addr:street}}
+                        {{station.properties.tags.addr:street}}
+                        {{else}}
+                        unknown
+                        {{/if}}
+                    </li>
+
+                    <li><b>Coordinates:</b> {{station.geometry.coordinates}}</li>
+                </ul>
+            </article>
+        </div>
+
+        {{/each}}
+
+    </section>
+</div>
