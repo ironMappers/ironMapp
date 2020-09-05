@@ -1,0 +1,18 @@
+<div>
+    <select name="region" id="region-selector">
+        <option value="">Elige una región</option>
+
+        {{#each codes.CAs as |CCAA|}}
+        <option value="{{CCAA.IDCCAA}}">{{CCAA.CCAA}}</option>
+        {{/each}}
+    </select>
+
+    <select name="province" id="province-selector">
+        <option value="">Elige una provincia</option>
+
+        <option value=""></option>
+    </select>
+</div>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="/js/filter.helper.js"></script>
