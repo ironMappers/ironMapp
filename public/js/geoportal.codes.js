@@ -1,4 +1,4 @@
-module.exports.REG_CODES = [{
+const REG_CODES = [{
     "IDCCAA": "01",
     "CCAA": "Andalucia"
 }, {
@@ -57,317 +57,425 @@ module.exports.REG_CODES = [{
     "CCAA": "Melilla"
 }];
 
-const provinceCodes = [
+const PR_CODES = [
     {
         "IDPR": "02",
         "IDCCAA": "07",
-        "PR": "ALBACETE",
+        "PR": "Albacete",
         "CCAA": "Castilla la Mancha"
     },
     {
         "IDPR": "03",
         "IDCCAA": "10",
-        "PR": "ALICANTE",
+        "PR": "Alicante",
         "CCAA": "Comunidad Valenciana"
     },
     {
         "IDPR": "04",
         "IDCCAA": "01",
-        "PR": "ALMERÍA",
+        "PR": "Almería",
         "CCAA": "Andalucia"
     },
     {
         "IDPR": "01",
         "IDCCAA": "16",
-        "PR": "ARABA/ÁLAVA",
+        "PR": "Araba/Álava",
         "CCAA": "País Vasco"
     },
     {
         "IDPR": "33",
         "IDCCAA": "03",
-        "PR": "ASTURIAS",
+        "PR": "Asturias",
         "CCAA": "Asturias"
     },
     {
         "IDPR": "05",
         "IDCCAA": "08",
-        "PR": "ÁVILA",
+        "PR": "Ávila",
         "CCAA": "Castilla y León"
     },
     {
         "IDPR": "06",
         "IDCCAA": "11",
-        "PR": "BADAJOZ",
+        "PR": "Badajoz",
         "CCAA": "Extremadura"
     },
     {
         "IDPR": "07",
         "IDCCAA": "04",
-        "PR": "BALEARS (ILLES)",
+        "PR": "Balears (Illes)",
         "CCAA": "Baleares"
     },
     {
         "IDPR": "08",
         "IDCCAA": "09",
-        "PR": "BARCELONA",
+        "PR": "Barcelona",
         "CCAA": "Cataluña"
     },
     {
         "IDPR": "48",
         "IDCCAA": "16",
-        "PR": "BIZKAIA",
+        "PR": "Bizkaia",
         "CCAA": "País Vasco"
     },
     {
         "IDPR": "09",
         "IDCCAA": "08",
-        "PR": "BURGOS",
+        "PR": "Burgos",
         "CCAA": "Castilla y León"
     },
     {
         "IDPR": "10",
         "IDCCAA": "11",
-        "PR": "CÁCERES",
+        "PR": "Cáceres",
         "CCAA": "Extremadura"
     },
     {
         "IDPR": "11",
         "IDCCAA": "01",
-        "PR": "CÁDIZ",
+        "PR": "Cádiz",
         "CCAA": "Andalucia"
     },
     {
         "IDPR": "39",
         "IDCCAA": "06",
-        "PR": "CANTABRIA",
+        "PR": "Cantabria",
         "CCAA": "Cantabria"
     },
     {
         "IDPR": "12",
         "IDCCAA": "10",
-        "PR": "CASTELLÓN / CASTELLÓ",
+        "PR": "Castellón / Castelló",
         "CCAA": "Comunidad Valenciana"
     },
     {
         "IDPR": "51",
         "IDCCAA": "18",
-        "PR": "CEUTA",
+        "PR": "Ceuta",
         "CCAA": "Ceuta"
     },
     {
         "IDPR": "13",
         "IDCCAA": "07",
-        "PR": "CIUDAD REAL",
+        "PR": "Ciudad Real",
         "CCAA": "Castilla la Mancha"
     },
     {
         "IDPR": "14",
         "IDCCAA": "01",
-        "PR": "CÓRDOBA",
+        "PR": "Córdoba",
         "CCAA": "Andalucia"
     },
     {
         "IDPR": "15",
         "IDCCAA": "12",
-        "PR": "CORUÑA (A)",
+        "PR": "Coruña (A)",
         "CCAA": "Galicia"
     },
     {
         "IDPR": "16",
         "IDCCAA": "07",
-        "PR": "CUENCA",
+        "PR": "Cuenca",
         "CCAA": "Castilla la Mancha"
     },
     {
         "IDPR": "20",
         "IDCCAA": "16",
-        "PR": "GIPUZKOA",
+        "PR": "Gipuzkoa",
         "CCAA": "País Vasco"
     },
     {
         "IDPR": "17",
         "IDCCAA": "09",
-        "PR": "GIRONA",
+        "PR": "Girona",
         "CCAA": "Cataluña"
     },
     {
         "IDPR": "18",
         "IDCCAA": "01",
-        "PR": "GRANADA",
+        "PR": "Granada",
         "CCAA": "Andalucia"
     },
     {
         "IDPR": "19",
         "IDCCAA": "07",
-        "PR": "GUADALAJARA",
+        "PR": "Guadalajara",
         "CCAA": "Castilla la Mancha"
     },
     {
         "IDPR": "21",
         "IDCCAA": "01",
-        "PR": "HUELVA",
+        "PR": "Huelva",
         "CCAA": "Andalucia"
     },
     {
         "IDPR": "22",
         "IDCCAA": "02",
-        "PR": "HUESCA",
+        "PR": "Huesca",
         "CCAA": "Aragón"
     },
     {
         "IDPR": "23",
         "IDCCAA": "01",
-        "PR": "JAÉN",
+        "PR": "Jaén",
         "CCAA": "Andalucia"
     },
     {
         "IDPR": "24",
         "IDCCAA": "08",
-        "PR": "LEÓN",
+        "PR": "León",
         "CCAA": "Castilla y León"
     },
     {
         "IDPR": "25",
         "IDCCAA": "09",
-        "PR": "LLEIDA",
+        "PR": "Lleida",
         "CCAA": "Cataluña"
     },
     {
         "IDPR": "27",
         "IDCCAA": "12",
-        "PR": "LUGO",
+        "PR": "Lugo",
         "CCAA": "Galicia"
     },
     {
         "IDPR": "28",
         "IDCCAA": "13",
-        "PR": "MADRID",
+        "PR": "Madrid",
         "CCAA": "Madrid"
     },
     {
         "IDPR": "29",
         "IDCCAA": "01",
-        "PR": "MÁLAGA",
+        "PR": "Málaga",
         "CCAA": "Andalucia"
     },
     {
         "IDPR": "52",
         "IDCCAA": "19",
-        "PR": "MELILLA",
+        "PR": "Melilla",
         "CCAA": "Melilla"
     },
     {
         "IDPR": "30",
         "IDCCAA": "14",
-        "PR": "MURCIA",
+        "PR": "Murcia",
         "CCAA": "Murcia"
     },
     {
         "IDPR": "31",
         "IDCCAA": "15",
-        "PR": "NAVARRA",
+        "PR": "Navarra",
         "CCAA": "Navarra"
     },
     {
         "IDPR": "32",
         "IDCCAA": "12",
-        "PR": "OURENSE",
+        "PR": "Ourense",
         "CCAA": "Galicia"
     },
     {
         "IDPR": "34",
         "IDCCAA": "08",
-        "PR": "PALENCIA",
+        "PR": "Palencia",
         "CCAA": "Castilla y León"
     },
     {
         "IDPR": "35",
         "IDCCAA": "05",
-        "PR": "PALMAS (LAS)",
+        "PR": "Palmas (Las)",
         "CCAA": "Canarias"
     },
     {
         "IDPR": "36",
         "IDCCAA": "12",
-        "PR": "PONTEVEDRA",
+        "PR": "Pontevedra",
         "CCAA": "Galicia"
     },
     {
         "IDPR": "26",
         "IDCCAA": "17",
-        "PR": "RIOJA (LA)",
+        "PR": "Rioja (La)",
         "CCAA": "Rioja (La)"
     },
     {
         "IDPR": "37",
         "IDCCAA": "08",
-        "PR": "SALAMANCA",
+        "PR": "Salamanca",
         "CCAA": "Castilla y León"
     },
     {
         "IDPR": "38",
         "IDCCAA": "05",
-        "PR": "SANTA CRUZ DE TENERIFE",
+        "PR": "Santa Cruz De Tenerife",
         "CCAA": "Canarias"
     },
     {
         "IDPR": "40",
         "IDCCAA": "08",
-        "PR": "SEGOVIA",
+        "PR": "Segovia",
         "CCAA": "Castilla y León"
     },
     {
         "IDPR": "41",
         "IDCCAA": "01",
-        "PR": "SEVILLA",
+        "PR": "Sevilla",
         "CCAA": "Andalucia"
     },
     {
         "IDPR": "42",
         "IDCCAA": "08",
-        "PR": "SORIA",
+        "PR": "Soria",
         "CCAA": "Castilla y León"
     },
     {
         "IDPR": "43",
         "IDCCAA": "09",
-        "PR": "TARRAGONA",
+        "PR": "Tarragona",
         "CCAA": "Cataluña"
     },
     {
         "IDPR": "44",
         "IDCCAA": "02",
-        "PR": "TERUEL",
+        "PR": "Teruel",
         "CCAA": "Aragón"
     },
     {
         "IDPR": "45",
         "IDCCAA": "07",
-        "PR": "TOLEDO",
+        "PR": "Toledo",
         "CCAA": "Castilla la Mancha"
     },
     {
         "IDPR": "46",
         "IDCCAA": "10",
-        "PR": "VALENCIA / VALÈNCIA",
+        "PR": "Valencia / València",
         "CCAA": "Comunidad Valenciana"
     },
     {
         "IDPR": "47",
         "IDCCAA": "08",
-        "PR": "VALLADOLID",
+        "PR": "Valladolid",
         "CCAA": "Castilla y León"
     },
     {
         "IDPR": "49",
         "IDCCAA": "08",
-        "PR": "ZAMORA",
+        "PR": "Zamora",
         "CCAA": "Castilla y León"
     },
     {
         "IDPR": "50",
         "IDCCAA": "02",
-        "PR": "ZARAGOZA",
+        "PR": "Zaragoza",
         "CCAA": "Aragón"
+    }
+];
+
+const FUEL_CODES = [
+    {
+        "IDProducto": "1",
+        "NombreProducto": "Gasolina 95 E5",
+        "NombreProductoAbreviatura": "G95E5"
+    },
+    {
+        "IDProducto": "23",
+        "NombreProducto": "Gasolina 95 E10",
+        "NombreProductoAbreviatura": "G95E10"
+    },
+    {
+        "IDProducto": "20",
+        "NombreProducto": "Gasolina 95 E5 Premium",
+        "NombreProductoAbreviatura": "G95E5+"
+    },
+    {
+        "IDProducto": "3",
+        "NombreProducto": "Gasolina 98 E5",
+        "NombreProductoAbreviatura": "G98E5"
+    },
+    {
+        "IDProducto": "21",
+        "NombreProducto": "Gasolina 98 E10",
+        "NombreProductoAbreviatura": "G98E10"
+    },
+    {
+        "IDProducto": "4",
+        "NombreProducto": "Gasóleo A habitual",
+        "NombreProductoAbreviatura": "GOA"
+    },
+    {
+        "IDProducto": "5",
+        "NombreProducto": "Gasóleo Premium",
+        "NombreProductoAbreviatura": "GOA+"
+    },
+    {
+        "IDProducto": "6",
+        "NombreProducto": "Gasóleo B",
+        "NombreProductoAbreviatura": "GOB"
+    },
+    {
+        "IDProducto": "7",
+        "NombreProducto": "Gasóleo C",
+        "NombreProductoAbreviatura": "GOC"
+    },
+    {
+        "IDProducto": "16",
+        "NombreProducto": "Bioetanol",
+        "NombreProductoAbreviatura": "BIE"
+    },
+    {
+        "IDProducto": "8",
+        "NombreProducto": "Biodiésel",
+        "NombreProductoAbreviatura": "BIO"
+    },
+    {
+        "IDProducto": "17",
+        "NombreProducto": "Gases licuados del petróleo",
+        "NombreProductoAbreviatura": "GLP"
+    },
+    {
+        "IDProducto": "18",
+        "NombreProducto": "Gas natural comprimido",
+        "NombreProductoAbreviatura": "GNC"
+    },
+    {
+        "IDProducto": "19",
+        "NombreProducto": "Gas natural licuado",
+        "NombreProductoAbreviatura": "GNL"
+    },
+    {
+        "IDProducto": "22",
+        "NombreProducto": "Hidrógeno",
+        "NombreProductoAbreviatura": "H2"
+    },
+    {
+        "IDProducto": "9",
+        "NombreProducto": "Fuelóleo bajo índice azufre",
+        "NombreProductoAbreviatura": "FOB"
+    },
+    {
+        "IDProducto": "10",
+        "NombreProducto": "Fuelóleo especial",
+        "NombreProductoAbreviatura": "FOE"
+    },
+    {
+        "IDProducto": "11",
+        "NombreProducto": "Gasóleo para uso marítimo",
+        "NombreProductoAbreviatura": "MGO"
+    },
+    {
+        "IDProducto": "12",
+        "NombreProducto": "Gasolina de aviación",
+        "NombreProductoAbreviatura": "GNAV"
+    },
+    {
+        "IDProducto": "13",
+        "NombreProducto": "Queroseno de aviación JET_A1",
+        "NombreProductoAbreviatura": "JETA1"
+    },
+    {
+        "IDProducto": "14",
+        "NombreProducto": "Queroseno de aviación JET_A2",
+        "NombreProductoAbreviatura": "JETA2"
     }
 ];

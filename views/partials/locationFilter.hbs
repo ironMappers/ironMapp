@@ -1,18 +1,25 @@
 <div>
     <select name="region" id="region-selector">
         <option value="">Elige una región</option>
-
-        {{#each codes.CAs as |CCAA|}}
-        <option value="{{CCAA.IDCCAA}}">{{CCAA.CCAA}}</option>
-        {{/each}}
     </select>
 
     <select name="province" id="province-selector">
         <option value="">Elige una provincia</option>
+    </select>
 
-        <option value=""></option>
+    <select name="municipio" id="municipio-selector">
+        <option value="">Elige un municipio</option>
+    </select>
+
+    <select name="fuel" id="fuel-selector">
+        <option value="">Tipo de combustible</option>
     </select>
 </div>
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+{{!-- 
+Not sure on the performance of this
+Maybe it's better to deploy the data on mongo db 
+--}}
+<script src="/js/geoportal.codes.js"></script>
 <script src="/js/filter.helper.js"></script>
