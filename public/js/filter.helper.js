@@ -2,6 +2,12 @@ const regionSelect = document.getElementById('region-selector');
 const provinceSelect = document.getElementById('province-selector');
 const municipioSelect = document.getElementById('municipio-selector');
 const fuelSelect = document.getElementById('fuel-selector');
+const query = {
+    region: '',
+    province: '',
+    municipio: '',
+    fuel: ''
+};
 
 const filterProvinces = (region) => {
     provinceSelect.classList.remove('hidden');
@@ -45,14 +51,28 @@ window.addEventListener('load', () => {
     });
 });
 
-regionSelect.addEventListener('input', () => {
-    const optionIndex = regionSelect.selectedIndex;
-    const selectedRegion = regionSelect.options[optionIndex].value;
+regionSelect.addEventListener('input', function() {
+    const optionIndex = this.selectedIndex;
+    const selectedRegion = this.options[optionIndex].value;
+    query.region = selectedRegion;
     filterProvinces(selectedRegion);
 });
 
-provinceSelect.addEventListener('input', () => {
-    const optionIndex = provinceSelect.selectedIndex;
-    const selectedProvince = provinceSelect.options[optionIndex].value;
+provinceSelect.addEventListener('input', function()  {
+    const optionIndex = this.selectedIndex;
+    const selectedProvince = this.options[optionIndex].value;
+    query.province = selectedProvince;
     getMunicipios(selectedProvince);
+});
+
+municipioSelect.addEventListener('input', function() {
+    const optionIndex = this.selectedIndex;
+    const selectedMunicipio = this.options[optionIndex].value;
+    query.municipio = selectedMunicipio;
+});
+
+fuelSelect.addEventListener('input', function() {
+    const optionIndex = this.selectedIndex;
+    const selectedFuel = this.options[optionIndex].value;
+    query.fuel = selectedFuel;
 });

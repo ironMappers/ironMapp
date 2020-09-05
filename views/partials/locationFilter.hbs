@@ -1,18 +1,20 @@
-<div>
-    <select name="region" id="region-selector">
+<form action="" id="filter-form" class="d-flex">
+    <select name="region" id="region-selector" class="form-control">
         <option value="">Elige una región</option>
     </select>
 
-    <select name="province" id="province-selector" class="hidden">
+    <select name="province" id="province-selector" class="hidden form-control">
     </select>
 
-    <select name="municipio" id="municipio-selector" class="hidden">
+    <select name="municipio" id="municipio-selector" class="hidden form-control">
     </select>
 
-    <select name="fuel" id="fuel-selector">
+    <select name="fuel" id="fuel-selector" class="form-control">
         <option value="">Tipo de combustible</option>
     </select>
-</div>
+
+    <button id="query-button" class="btn btn-primary">Buscar</button>
+</form>
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 {{!-- 
@@ -21,3 +23,4 @@ Maybe it's better to deploy the data on mongo db
 --}}
 <script src="/js/geoportal.codes.js"></script>
 <script src="/js/filter.helper.js"></script>
+<script src="/js/stations.helper.js"></script>
