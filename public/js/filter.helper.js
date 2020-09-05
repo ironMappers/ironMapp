@@ -4,7 +4,10 @@ const municipioSelect = document.getElementById('municipio-selector');
 const fuelSelect = document.getElementById('fuel-selector');
 
 const filterProvinces = (region) => {
-    provinceSelect.innerHTML = '';
+    provinceSelect.classList.remove('hidden');
+    municipioSelect.classList.add('hidden');
+    provinceSelect.innerHTML = '<option value="">Provincia</option>';
+    municipioSelect.innerHTML = '';
     const provinces = PR_CODES.filter(PR => PR.IDCCAA === region);
 
     provinces.forEach(pr => {
@@ -14,7 +17,11 @@ const filterProvinces = (region) => {
 };
 
 const getMunicipios = (province) => {
-    municipioSelect.innerHTML = '';
+    //There's probably a more elegant way to do this
+    window.setTimeout(() => {
+        municipioSelect.classList.remove('hidden');
+    }, 1000);
+    municipioSelect.innerHTML = '<option value="">Municipio</option>';
     axios.get(`https://thingproxy.freeboard.io/fetch/https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/Listados/MunicipiosPorProvincia/${province}`)
         .then(response => {
             const municipios = response.data;

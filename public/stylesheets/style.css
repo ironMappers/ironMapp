@@ -22,3 +22,7 @@ a {
     display: flex;
     justify-content: center;
 }
+
+.hidden {
+    display: none;
+}
