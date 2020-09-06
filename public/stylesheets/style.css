@@ -22,3 +22,17 @@ a {
     display: flex;
     justify-content: center;
 }
+
+.hidden {
+    display: none;
+}
+
+.form-control {
+    margin: 0 0.3rem;
+}
+
+ #query-button::before{
+    content: "\f002";
+    font-family: FontAwesome;
+    padding-right: 0.6rem;
+ }
