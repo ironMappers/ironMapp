@@ -92,7 +92,6 @@ module.exports.renderLogin = (req, res, next) => {
 };
 
 module.exports.doLogin = (req, res, next) => {
-    console.log('hola')
     User.findOne({
             username: req.body.username
         })
