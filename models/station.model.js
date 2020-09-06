@@ -3,7 +3,7 @@ require('./user.model');
 require('./station.model');
 
 const stationSchema = new mongoose.Schema({
-    node: {
+    IDEES: {
         type: String,
         required: true
     }
