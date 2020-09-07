@@ -4,13 +4,12 @@ L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x
     maxZoom: 18,
 }).addTo(mymap);
 
-document.getElementById
+const submitQueryButton = document.getElementById('query-button');
 
-const getStationsInfo = () => {
+submitQueryButton.addEventListener('click', () => {
     let lat = '';
     let lon = '';
-    axios
-        .get(`https://cors-anywhere.herokuapp.com/https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/FiltroMunicipio/4354`)
+    getStations(query)
         .then(response => {
             console.log(response.data); 
             response.data.ListaEESSPrecio.forEach(station => {
@@ -19,32 +18,34 @@ const getStationsInfo = () => {
                 const marker = L.marker([lat, lon]);
                 marker.addTo(mymap).on('click', function(e) {
                     const popup = L.popup();
-                    let index = response.data.ListaEESSPrecio.indexOf(station)
+                    // let index = response.data.ListaEESSPrecio.indexOf(station)
                     popup
                         .setLatLng(e.latlng)
                         .setContent(`
                             <p>${station['Rótulo']}</p>
-                            <a href="http://localhost:3000/station/${index}/${station.IDEESS}">Visit Station</a>
+                            <a href="http://localhost:3000/station/${station.IDEESS}">Visit Station</a>
                             `)
                         .openOn(mymap);
                 })
             });
+
         })
-        .catch(e => console.error(e))
-}
+        .catch(e => console.error(e)) ;
+});
 
-getStationsInfo()
 
-const popup = L.popup();
+// getStationsInfo()
 
-function onMapClick(e) {
-popup
-    .setLatLng(e.latlng)
-    .setContent(e.latlng.toString() + '<a href="http://localhost:3000/login">Visit Google</a>"')
-    .openOn(mymap);
-}
+// const popup = L.popup();
 
-mymap.on('click', onMapClick);
+// function onMapClick(e) {
+// popup
+//     .setLatLng(e.latlng)
+//     .setContent(e.latlng.toString() + '<a href="http://localhost:3000/login">Visit Google</a>"')
+//     .openOn(mymap);
+// }
+
+// mymap.on('click', onMapClick);
 
 
 

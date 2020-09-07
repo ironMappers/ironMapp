@@ -1,4 +1,4 @@
-/* body {
+ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
@@ -21,10 +21,11 @@ a {
     margin-bottom: 8rem;
     display: flex;
     justify-content: center;
-} */
+} 
 
 #mapid { 
-    height: 400px;
+    height: 76vh;
+    margin-top: -2rem;
 }
 
 .hidden {

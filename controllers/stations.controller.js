@@ -2,11 +2,11 @@
 const axiosConfig = require('../configs/axios.config');
 
 module.exports.renderStation = (req, res, next) => {
-    const index = req.params.index
+    const id = req.params.id
     Promise.all([axiosConfig.apiData()])
         .then(response => {
-            req.params.token
-            res.send(response[0].data.ListaEESSPrecio[index])
+            const stationsArr = response[0].data.ListaEESSPrecio
+            res.send(stationsArr.filter(el => el.IDEESS === id))
         })
         .catch(e => console.error(e))
 

@@ -124,5 +124,5 @@ module.exports.renderSignup = (req, res, next) => {
 };
 
 module.exports.renderDashboard = (req, res, next) => {
-    res.send(req.currentUser)
+    res.send(req.currentUser);
 };
