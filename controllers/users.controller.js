@@ -25,7 +25,6 @@ module.exports.createUser = (req, res, next) => {
         ...req.body,
         avatar: req.file ? req.file.path : undefined
     });
-    console.log(user)
 
     user.save()
         .then(user => {
@@ -124,5 +123,5 @@ module.exports.renderSignup = (req, res, next) => {
 };
 
 module.exports.renderDashboard = (req, res, next) => {
-    res.send(req.currentUser)
+    res.send(req.currentUser);
 };

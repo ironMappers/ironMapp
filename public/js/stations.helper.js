@@ -11,7 +11,7 @@ const getStations = (query) => {
         } else if (query.region) {
             urlQuery = (`https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/FiltroCCAAProducto/${query.region}/${query.fuel}`);
         } else {
-            console.error('You dumb');
+            console.error('Query Error');
             return;
         }
     } else if (query.municipio) {
@@ -21,11 +21,9 @@ const getStations = (query) => {
     } else if (query.region) {
         urlQuery = `https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/FiltroCCAA/${query.region}`;
     } else {
-        console.error('You really dumb');
+        console.error('Query Error');
         return;
     }
-    console.log(query)
-    console.log(urlQuery)
     return axios.get('https://thingproxy.freeboard.io/fetch/' + urlQuery);
 };
 
