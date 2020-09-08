@@ -10,6 +10,10 @@ const stationSchema = new mongoose.Schema({
     district: {
         type: String,
         required: true
+    },
+    district: {
+        type: String,
+        required: true
     }
 });
 

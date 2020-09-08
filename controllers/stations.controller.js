@@ -11,6 +11,11 @@ function renderComments(stationId, district) {
     //Comment.findOne({station: stationId})
 }
 
+function capitalize(string) {
+    const result = string.split(' ').map(word => word[0].toUpperCase() + word.slice(1).toLowerCase()).join(' ');
+    return result;
+}
+
 module.exports.renderStation = (req, res, next) => {
     const {stationId, stationDistrict} = req.params;
 
@@ -63,3 +68,4 @@ module.exports.renderStation = (req, res, next) => {
         })
         .catch(e => console.error(e));
 };
+
