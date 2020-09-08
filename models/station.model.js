@@ -6,6 +6,10 @@ const stationSchema = new mongoose.Schema({
     IDEES: {
         type: String,
         required: true
+    },
+    district: {
+        type: String,
+        required: true
     }
 });
 
