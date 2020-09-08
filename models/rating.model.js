@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 require('./user.model');
-require('./station.model');
 
 const ratingSchema = new mongoose.Schema({
     user: {

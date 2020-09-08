@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 require('./user.model');
-require('./station.model');
 
 const reviewSchema = new mongoose.Schema({
     user: {
@@ -22,6 +21,8 @@ const reviewSchema = new mongoose.Schema({
         type: String,
         required: true
     }
+}, {
+    timestamps: true
 });
 
 const Review = mongoose.model('Review', reviewSchema);
