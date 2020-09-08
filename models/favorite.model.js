@@ -7,11 +7,16 @@ const favoriteSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true
-    }, 
+    },
     station: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Station',
-        required: true
+        IDEESS: {
+            type: String,
+            required: true
+        },
+        district: {
+            type: String,
+            required: true
+        }
     }
 });
 

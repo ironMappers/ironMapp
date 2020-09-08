@@ -1,4 +1,15 @@
 const axiosConfig = require('../configs/axios.config');
+const Comment = require('../models/review.model');
+
+function capitalize(string) {
+    const result = string.split(' ').map(word => word[0].toUpperCase() + word.slice(1).toLowerCase()).join(' ');
+    return result;
+}
+
+function renderComments(stationId, district) {
+    //use stationID && district
+    //Comment.findOne({station: stationId})
+}
 
 function capitalize(string) {
     const result = string.split(' ').map(word => word[0].toUpperCase() + word.slice(1).toLowerCase()).join(' ');
@@ -6,12 +17,12 @@ function capitalize(string) {
 }
 
 module.exports.renderStation = (req, res, next) => {
-    const id = req.params.id;
+    const {stationId, stationDistrict} = req.params;
 
-    Promise.all([axiosConfig.apiData()])
+    axiosConfig.getStation(stationDistrict)
         .then(response => {
-            const stationsArr = response[0].data.ListaEESSPrecio;
-            const station = stationsArr.filter(st => st.IDEESS === id)[0];
+            const districtStations = (response.data.ListaEESSPrecio);
+            const station = districtStations.filter(st => st.IDEESS === stationId)[0];
 
             const stationDetails = {
                 info: {
@@ -46,19 +57,15 @@ module.exports.renderStation = (req, res, next) => {
                     },
                     hidrogen: station['Precio Hidrogeno']
                 },
-                reviews: [{
-                    user: {
-                        username: 'Pedro33',
-                        avatar: 'https://i.ytimg.com/vi/ln7lCbexP5s/hqdefault.jpg'
-                    },
-                    body: 'ta bn'
-                }]
+                reviews: renderComments(stationId, stationDistrict)
             };
+
             //should make a function 'parseProperties' that does all of the above and substitutes undefined properties for 'not available'
-            console.log(capitalize('eskEErEE'))
             res.render('stations/details', {
                 stationDetails
             });
+
         })
         .catch(e => console.error(e));
 };
+
