@@ -1,22 +1,69 @@
 <div class="container card mt-5">
-    <h1 class="text-center pt-3">{{station['Rótulo']}} {{station['Dirección']}}</h1>
+    <header class="py-4 d-flex justify-content-between station-title">
+        <h1>
+            {{stationDetails.info.name}}
+        </h1>
+        <h2 class="d-flex flex-column">
+            {{stationDetails.info.address.street}}
+            <small>{{stationDetails.info.address.district}}, {{stationDetails.info.address.province}}</small>
+        </h2>
+
+    </header>
+
+    <section class="d-flex justify-content-between">
+        <small><b class="mr-3">OPEN</b>{{stationDetails.info.open}}</small>
+        <div>
+            <button class="btn-station mr-6" id="favorite-station"><i class="fa fa-heart-o"></i></button>
+            <span>
+                <button class="btn-station" id="rate-1"><i class="fa fa-star-o"></i></button>
+                <button class="btn-station"  id="rate-2"><i class="fa fa-star-o"></i></button>
+                <button class="btn-station"  id="rate-3"><i class="fa fa-star-o"></i></button>
+                <button class="btn-station"  id="rate-4"><i class="fa fa-star-o"></i></button>
+                <button class="btn-station"  id="rate-5"><i class="fa fa-star-o"></i></button>
+            </span>
+        </div>
+    </section>
 
     <hr>
 
-    <article class="ml-2">
-        <h2>Data</h2>
-        <ul>
-            <li>prices</li>
-            <li>more prices</li>
+    <article class="mx-2">
+        <h2>Prices</h2>
+        <ul class="d-flex justify-content-around">
+            <li>Gasoil:
+                <ul>
+                    <li> A: {{stationDetails.prices.gasoil.a}}</li>
+                    <li>B: {{stationDetails.prices.gasoil.b}}</li>
+                </ul>
+            </li>
+            <li> Petrol:
+                <ul>
+                    <li>95 E5: {{stationDetails.prices.petrol.octanes95E5}}</li>
+                    <li>98 E5: {{stationDetails.prices.petrol.octanes98E5}}</li>
+                </ul>
+            </li>
         </ul>
     </article>
 
     <hr>
 
-    <article class="ml-2">
+    <section class="ml-2">
         <h3>Reviews</h3>
-        <ul>
-            <li>This sucks!</li>
-        </ul>
-    </article>
+        {{#each stationDetails.reviews as |review|}}
+        <article class="card mb-4">
+            <div class="d-flex justify-content-between align-items-center">
+                <p>
+                    <b>{{review.user.username}} says:</b> {{review.body}}
+                </p>
+                <a href="/users/details/">{{review.user.id}}<img src="{{review.user.avatar}}" alt="user avatar"
+                        class="review-avatar-img"></a>
+            </div>
+        </article>
+        {{/each}}
+
+        <form action="/station/{{stationDetails.info.id}}/review" class="form d-flex">
+            <input type="text" name="reviewBody" id="make-review" placeholder="Write here your review"
+                class="form-control">
+            <button type="submit" class="btn btn-primary">Submit!</button>
+        </form>
+    </section>
 </div>
