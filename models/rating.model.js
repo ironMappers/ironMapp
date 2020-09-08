@@ -9,9 +9,14 @@ const ratingSchema = new mongoose.Schema({
         required: true
     },
     station: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
+        IDEESS: {
+            type: String,
+            required: true
+        },
+        district: {
+            type: String,
+            required: true
+        }
     },
     score: {
         type: String,
