@@ -26,6 +26,7 @@ a {
 #mapid { 
     height: 76vh;
     margin-top: -2rem;
+
 }
 
 .hidden {
@@ -40,4 +41,3 @@ a {
     content: "\f002";
     font-family: FontAwesome;
     padding-right: 0.6rem;
- }
