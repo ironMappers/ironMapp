@@ -21,9 +21,11 @@ const getStations = (query) => {
     } else if (query.region) {
         urlQuery = `https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/FiltroCCAA/${query.region}`;
     } else {
+
         console.error('Query Error');
         return;
     }
     return axios.get('https://thingproxy.freeboard.io/fetch/' + urlQuery);
 };
+
 

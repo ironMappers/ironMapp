@@ -11,8 +11,8 @@ passport.deserializeUser(function (id, done) {
             done(null, user);
         })
         .catch(e => {
-            console.error(e)
-            done(e)
+            console.error(e);
+            done(e);
         });
 });
 
