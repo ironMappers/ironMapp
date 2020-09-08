@@ -11,28 +11,31 @@ submitQueryButton.addEventListener('click', () => {
     let lon = '';
     getStations(query)
         .then(response => {
-            console.log(response.data); 
             response.data.ListaEESSPrecio.forEach(station => {
+                
+                //podríamos declarar lat y lon directamente como const aqui
                 lat = (station.Latitud).replace(',', '.');
                 lon = (station['Longitud (WGS84)']).replace(',', '.');
                 const marker = L.marker([lat, lon]);
+
+                                                //que es "e"?
                 marker.addTo(mymap).on('click', function(e) {
                     const popup = L.popup();
-                    // let index = response.data.ListaEESSPrecio.indexOf(station)
                     popup
                         .setLatLng(e.latlng)
                         .setContent(`
                             <p>${station['Rótulo']}</p>
-                            <a href="http://localhost:3000/station/${station.IDEESS}">Visit Station</a>
+                            <a href="http://localhost:3000/station/${station.IDEESS}/${station.IDMunicipio}">Visit Station</a>
                             `)
                         .openOn(mymap);
-                })
+                });
             });
 
         })
         .catch(e => console.error(e)) ;
 });
 
+//¿?QUE ASEMOS CON ESTO
 
 // getStationsInfo()
 

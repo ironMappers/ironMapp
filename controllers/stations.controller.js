@@ -1,23 +1,23 @@
 const axiosConfig = require('../configs/axios.config');
-const Review = require('../models/review.model');
+const Comment = require('../models/review.model');
 
 function capitalize(string) {
     const result = string.split(' ').map(word => word[0].toUpperCase() + word.slice(1).toLowerCase()).join(' ');
     return result;
 }
 
-function renderReviews(stationId, district) {
+function renderComments(stationId, district) {
     //use stationID && district
-    //Review.findOne({station: stationId})
+    //Comment.findOne({station: stationId})
 }
 
 module.exports.renderStation = (req, res, next) => {
-    const stationId = req.params.id;
+    const {stationId, stationDistrict} = req.params;
 
-    Promise.all([axiosConfig.apiData()])
+    axiosConfig.getStation(stationDistrict)
         .then(response => {
-            const stationsArr = response[0].data.ListaEESSPrecio;
-            const station = stationsArr.filter(st => st.IDEESS === stationId)[0];
+            const districtStations = (response.data.ListaEESSPrecio);
+            const station = districtStations.filter(st => st.IDEESS === stationId)[0];
 
             const stationDetails = {
                 info: {
@@ -52,13 +52,14 @@ module.exports.renderStation = (req, res, next) => {
                     },
                     hidrogen: station['Precio Hidrogeno']
                 },
-                reviews: renderReviews(stationId, station.info.address.district)
+                reviews: renderComments(stationId, stationDistrict)
             };
 
             //should make a function 'parseProperties' that does all of the above and substitutes undefined properties for 'not available'
             res.render('stations/details', {
                 stationDetails
             });
+
         })
         .catch(e => console.error(e));
 };

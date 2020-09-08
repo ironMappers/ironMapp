@@ -31,7 +31,7 @@ router.get('/users/:id/activate/:token', sessionMiddleware.isAuthenticated, user
 router.get('/users/dashboard', sessionMiddleware.isAuthenticated, usersController.renderDashboard);
 
 /*STATIONS*/
-router.get('/station/:id', stationsController.renderStation);
+router.get('/station/:stationId/:stationDistrict', stationsController.renderStation);
 
 
 module.exports = router;
