@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.20.0",
     "bcrypt": "^5.0.0",
     "cloudinary": "^1.23.0",
     "connect-mongo": "^3.2.0",
@@ -31,5 +32,6 @@
     "passport-google-oauth20": "^2.0.0",
     "passport-local": "^1.0.0",
     "passport-slack": "0.0.7"
-  }
+  },
+  "devDependencies": {}
 }

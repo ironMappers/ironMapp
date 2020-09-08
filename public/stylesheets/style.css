@@ -1,4 +1,4 @@
-body {
+ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
@@ -21,6 +21,12 @@ a {
     margin-bottom: 8rem;
     display: flex;
     justify-content: center;
+} 
+
+#mapid { 
+    height: 76vh;
+    margin-top: -2rem;
+
 }
 
 .hidden {
@@ -35,4 +41,3 @@ a {
     content: "\f002";
     font-family: FontAwesome;
     padding-right: 0.6rem;
- }

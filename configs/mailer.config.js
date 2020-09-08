@@ -16,7 +16,7 @@ module.exports.sendValidationEmail = ({name, email, id, activationToken}) => {
     transporter.sendMail({
         to: email,
         from: `Gas Stations Project team <${user}>`,
-        subject: 'Activate your acoount!',
+        subject: 'Activate your account!',
         html: `
             <h1>Hi ${name}</h1>
             <p>Click on the button below to activate your account ❤️</p>
