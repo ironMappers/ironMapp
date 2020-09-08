@@ -1,0 +1,26 @@
+<div class="container form-wrapper">
+  <form action="/users/{{id}}/edit" method="POST" enctype="multipart/form-data"> 
+
+    <div class="form-group">
+      <label for="username">Name</label>
+      <input name="username" type="text" value="{{username}}" class="form-control {{#if error.username }}is-invalid{{/if}}" id="username" placeholder="Enter name" required>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" value="{{email}}" class="form-control {{#if error.email }}is-invalid{{/if}}" id="email" name="email" placeholder="Enter email" required>
+    </div>
+
+    <div class="form-group">
+      <label for="password">New password</label>
+      <input type="password" class="form-control {{#if error.password }}is-invalid{{/if}}" id="password" name="password">
+    </div>
+    
+    <div class="form-group">
+      <label for="avatar">Avatar</label>
+      <input type="file" class="form-control-file {{#if error.avatar }}is-invalid{{/if}}" id="avatar" name="avatar">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Edit your profile!</button>
+  </form>
+</div>

@@ -19,7 +19,7 @@ module.exports.sendValidationEmail = ({name, email, id, activationToken}) => {
         subject: 'Activate your account!',
         html: `
             <h1>Hi ${name}</h1>
-            <p>Click on the button below to activate your account ❤️</p>
+            <p>Click on the button below to activate your account ❤️⛽</p>
             <a href="${host}/users/${id}/activate/${activationToken}" style="padding: 10px 20px; color: white; background-color: pink; border-radius: 5px;">Click here</a>
         `
     })

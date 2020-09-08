@@ -124,5 +124,50 @@ module.exports.renderSignup = (req, res, next) => {
 };
 
 module.exports.renderDashboard = (req, res, next) => {
-    res.send(req.currentUser);
+    res.render('users/dashboard', req.currentUser);
 };
+
+module.exports.renderEditForm = (req, res, next) => {
+    const id = req.params;
+
+    User.findById(id)
+        .then( userToEdit => {
+            res.render('users/user-edit', userToEdit);
+        })
+        .catch(error => next);
+};
+
+module.exports.updateUser = (req, res, next) => {
+    console.log(req.file)
+    const { username, email, password, avatar } = req.body;
+
+    const updatedUser = {
+        username,
+        email
+    }
+    if (req.file) {
+        updatedUser.avatar = req.file.path
+    }
+    if (password) {
+        updatedUser.password = password
+    }
+
+    console.log(updatedUser)
+
+    User.findByIdAndUpdate(req.params._id, updatedUser, { runValidators: true, new: true })
+        .then(user => {
+            console.log(user)
+            if (user) {
+                res.redirect('/users/dashboard')
+            } else {
+                res.render(`/users/${user._id}/edit`, {
+                    error: {
+                        validation: {
+                            message: 'Your account is not active, check your email!'
+                        }
+                    }
+                })
+            }
+        })
+    .catch(error => next)
+}
