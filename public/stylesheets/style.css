@@ -61,9 +61,13 @@ a {
 	border: none;
 	font: inherit;
 	cursor: pointer;
-	outline: inherit;
+    outline: inherit;
 }
 
 .btn-station span i {
     color: yellow;
+}
+
+#edit-form {
+    width: 90%;
 }

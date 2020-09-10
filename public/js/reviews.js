@@ -37,7 +37,7 @@ postForm.addEventListener('submit', event => {
 reviews.forEach(review => {
     const deleteBtn = review.querySelector('.delete-btn');
     const editBtn = review.querySelector('.edit-btn');
-    const reviewBody = review.querySelector('.review-body').innerText;
+    let reviewBody = review.querySelector('.review-body').innerText;
     const reviewUser = review.querySelector('.review-user').innerText;
 
     deleteBtn.addEventListener('click', event => {
@@ -55,8 +55,8 @@ reviews.forEach(review => {
                                 </p>
                                 <form class="form d-flex my-2" method="POST" id="edit-form">
                                     <input type="text" name="review" id="edit-input" value="${reviewBody}" class="form-control">
-                                    <button type="submit" class="btn btn-primary" id="submit-edit">Save changes</button>
-                                    <button class="btn btn-outline-danger" id="cancel-edit">Cancel</button>
+                                    <button type="submit" class="btn-station text-primary" id="submit-edit">Change</button>
+                                    <button class="btn-station text-danger" id="cancel-edit">Cancel</button>
                                 </form>
                             </div>`;
 
@@ -78,6 +78,8 @@ reviews.forEach(review => {
                 })
                 .then(() => {
                     toggleCrudElements('display');
+                    review.innerHTML = reviewBuffer;
+                    review.querySelector('.review-body').innerText = reviewBodyEdit;
                 })
                 .catch(e => console.error(e));
         });

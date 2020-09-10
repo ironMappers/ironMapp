@@ -30,7 +30,6 @@ module.exports.deleteReview = (req, res, next) => {
 };
 
 module.exports.editReview = (req, res, next) => {
-    console.log('heey')
     Review.findByIdAndUpdate(req.params.id, {
             body: req.body.reviewBodyEdit
         })
