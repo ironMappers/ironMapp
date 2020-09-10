@@ -69,6 +69,7 @@ module.exports.renderStation = (req, res, next) => {
                 };
 
                 //should make a function 'parseProperties' that does all of the above and substitutes undefined properties for 'not available'
+                res.locals.currentStation = JSON.stringify({stationId, stationDistrict});
                 res.render('stations/details', {
                     stationDetails
                 });
@@ -78,21 +79,3 @@ module.exports.renderStation = (req, res, next) => {
         .catch(next);
 };
 
-module.exports.createReview = (req, res, next) => {
-    const {
-        stationId,
-        stationDistrict
-    } = req.params;
-    const newReview = new Review({
-        user: req.currentUser._id,
-        station: {
-            IDEESS: stationId,
-            district: stationDistrict
-        },
-        body: req.body.review
-    });
-
-    newReview.save()
-        .then(() => res.redirect(`/station/${stationId}/${stationDistrict}`))
-        .catch(next);
-};

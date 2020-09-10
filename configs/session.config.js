@@ -9,11 +9,11 @@ const session = expressSession({
     cookie: {
         secure: false, 
         httpOnly: true,
-        maxAge: Number(process.env.SESSION_MAX_AGE) || 3600000
+        maxAge: Number(process.env.SESSION_MAX_AGE) || 360000000
     },
     store: new MongoStore({
         mongooseConnection: mongoose.connection,
-        ttl: Number(process.env.SESSION_MAX_AGE) || 3600
+        ttl: Number(process.env.SESSION_MAX_AGE) || 360000000
     })
 });
 

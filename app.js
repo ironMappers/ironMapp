@@ -13,15 +13,12 @@ const passport = require('./configs/passport.config');
 app.use(logger('dev'));
 app.use(express.urlencoded({extended: false}));
 app.use(express.static('./public'));
+app.use(express.json());
 app.use(cookieParser());
 app.use(session);
 app.use(sessionMiddleware.checkAuth);
 app.use(passport.initialize());
 app.use(passport.session());
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    next();
-});
 
 
 /*VIEW ENGINE SETUP*/

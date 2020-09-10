@@ -32,11 +32,11 @@ router.get('/users/dashboard', sessionMiddleware.isAuthenticated, usersControlle
 
 /*STATIONS*/
 router.get('/station/:stationId/:stationDistrict', stationsController.renderStation);
-router.post('/station/:stationId/:stationDistrict/review', sessionMiddleware.isAuthenticated,stationsController.createReview);
 
 /*FEATURES*/
-router.get('/review/edit/:id', sessionMiddleware.isAuthor, miscController.editReview);
-router.get('/review/delete/:id', sessionMiddleware.isAuthor, miscController.deleteReview);
+router.post('/review/create/:stationId/:stationDistrict', sessionMiddleware.isAuthenticated, miscController.createReview);
+router.patch('/review/:id', sessionMiddleware.isAuthor, miscController.editReview);
+router.delete('/review/:id', sessionMiddleware.isAuthor, miscController.deleteReview);
 
 
 module.exports = router;

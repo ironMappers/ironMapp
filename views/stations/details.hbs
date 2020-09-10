@@ -48,30 +48,45 @@
 
     <section class="ml-2">
         <h3>Reviews</h3>
-        {{#each stationDetails.reviews as |review|}}
-        <article class="card mb-4 bx-2">
-            <div class="d-flex justify-content-between align-items-center">
-                <p><b>{{review.user.username}} says:</b> {{review.body}}</p>
-                <a href="/users/details/">{{review.user.id}}<img src="{{review.user.avatar}}" alt="user avatar"
-                        class="review-avatar-img"></a>
-            </div>
-            <div class="d-flex justify-content-between">
-                {{!-- Necesito una forma menos ortopédica de escribir esto --}}
-                <small class="text-dark">{{review.createdAt}}</small>
+        <div id="reviews-wrapper">
+            {{#each stationDetails.reviews as |review|}}
 
-                {{!-- We need to restrict these routes --}}
-                <ul>
-                    <a href="/review/edit/{{review.id}}" class="text-muted">Edit</a>
-                    <a href="/review/delete/{{review.id}}" class="text-danger">Delete</a>
-                </ul>
-            </div>
-        </article>
-        {{/each}}
+            <article class="card mb-4 bx-2 review">
+                <div class="d-flex justify-content-between align-items-center">
+                    <p>
+                        <b class="review-user">{{review.user.username}} says:</b>
+                        <span class="review-body">{{review.body}}</span>
+                    </p>
+                    <a href="/users/details/" {{review.user.id}}>
+                        <img src="{{review.user.avatar}}" alt="user avatar" class="review-avatar-img">
+                    </a>
+                </div>
+                <div class="d-flex justify-content-between">
+                    {{!-- Necesito una forma menos ortopédica de escribir esto --}}
+                    <small class="text-dark">{{review.createdAt}}</small>
 
-        <form action="/station/{{stationDetails.stationId}}/{{stationDetails.stationDistrict}}/review" method="POST"
-            class="form d-flex my-4">
-            <input type="text" name="review" id="make-review" placeholder="Write here your review" class="form-control">
-            <button type="submit" class="btn btn-primary">Submit!</button>
+                    {{!-- We need to restrict these routes --}}
+                    <ul class="review-btns">
+                        <button value="{{review.id}}" class="text-muted btn-station edit-btn">Edit</button>
+                        <button value="{{review.id}}" class="text-danger btn-station delete-btn">Delete</button>
+                    </ul>
+                </div>
+            </article>
+
+            {{/each}}
+        </div>
+
+        <form class="form d-flex my-4" method="POST" action="#" id="create-form">
+            <input type="text" name="review" id="post-review-input" placeholder="Write here your review"
+                class="form-control">
+            <button type="submit" class="btn btn-primary" id="create-btn">Submit!</button>
         </form>
     </section>
 </div>
+
+
+<script>
+    const id = decodeURIComponent("{{{stationDetails.stationId}}}");
+    const district = decodeURIComponent("{{{stationDetails.stationDistrict}}}");
+</script>
+<script src="/js/reviews.js"></script>
