@@ -51,25 +51,30 @@
         <div id="reviews-wrapper">
             {{#each stationDetails.reviews as |review|}}
 
+            {{!-- refactor with "with" --}}
             <article class="card mb-4 bx-2 review">
                 <div class="d-flex justify-content-between align-items-center">
                     <p>
                         <b class="review-user">{{review.user.username}} says:</b>
                         <span class="review-body">{{review.body}}</span>
                     </p>
-                    <a href="/users/details/" {{review.user.id}}>
+                    <a href="/users/details/{{review.user.id}}">
                         <img src="{{review.user.avatar}}" alt="user avatar" class="review-avatar-img">
                     </a>
                 </div>
                 <div class="d-flex justify-content-between">
-                    {{!-- Necesito una forma menos ortopédica de escribir esto --}}
+                    {{!--Need to edit the date with a hbs helper--}}
                     <small class="text-dark">{{review.createdAt}}</small>
 
-                    {{!-- We need to restrict these routes --}}
+                    {{#owner currentUser.id review.user.id}}
                     <ul class="review-btns">
-                        <button value="{{review.id}}" class="text-muted btn-station edit-btn">Edit</button>
-                        <button value="{{review.id}}" class="text-danger btn-station delete-btn">Delete</button>
+                        <button value="{{review.id}}/{{review.user.id}}" class="text-muted btn-station edit-btn">Edit</button>
+                        <button value="{{review.id}}/{{review.user.id}}" class="text-danger btn-station delete-btn">Delete</button>
                     </ul>
+                    {{else}}
+                    <p>{{userId}} !== {{review.user.id}}</p>
+                    <p>{{currentUser}}</p>
+                    {{/owner}}
                 </div>
             </article>
 
@@ -84,9 +89,10 @@
     </section>
 </div>
 
-
 <script>
+    // is this safe? 
+    const userId = "{{currentUser.id}}";
     const id = decodeURIComponent("{{{stationDetails.stationId}}}");
-    const district = decodeURIComponent("{{{stationDetails.stationDistrict}}}");
+    const district = decodeURIComponent("{{stationDetails.stationDistrict}}");
 </script>
 <script src="/js/reviews.js"></script>

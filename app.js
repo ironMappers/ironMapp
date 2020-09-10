@@ -5,6 +5,7 @@ const logger = require('morgan');
 const express = require('express');
 const app = express();
 const hbs = require('hbs');
+const hbsHelpers = require('./middlewares/hbs.helpers');
 const cookieParser = require('cookie-parser');
 const session = require('./configs/session.config');
 const sessionMiddleware = require('./middlewares/session.middleware');

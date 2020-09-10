@@ -35,8 +35,8 @@ router.get('/station/:stationId/:stationDistrict', stationsController.renderStat
 
 /*FEATURES*/
 router.post('/review/create/:stationId/:stationDistrict', sessionMiddleware.isAuthenticated, miscController.createReview);
-router.patch('/review/:id', sessionMiddleware.isAuthor, miscController.editReview);
-router.delete('/review/:id', sessionMiddleware.isAuthor, miscController.deleteReview);
+router.patch('/review/:id/:ownerId', sessionMiddleware.isAuthor, miscController.editReview);
+router.delete('/review/:id/:ownerId', sessionMiddleware.isAuthor, miscController.deleteReview);
 
 
 module.exports = router;

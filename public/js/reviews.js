@@ -5,6 +5,7 @@ const reviews = document.querySelectorAll('.review');
 const reviewBtns = document.querySelectorAll('.review-btns');
 
 postForm.addEventListener('submit', event => {
+    //TODO: populate user data
     const reviewBody = document.getElementById('post-review-input').value;
     event.preventDefault();
 
