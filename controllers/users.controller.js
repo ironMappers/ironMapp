@@ -138,7 +138,6 @@ module.exports.renderEditForm = (req, res, next) => {
 };
 
 module.exports.updateUser = (req, res, next) => {
-    console.log(req.file)
     const { username, email, password, avatar } = req.body;
 
     const updatedUser = {
