@@ -39,7 +39,23 @@ module.exports.editReview = (req, res, next) => {
 };
 
 module.exports.doRating = (req, res, next) => {
-    Rating.findOneAndUpdate({
+    Rating.findOne({
         user: req.currentUser._id,
+        station: req.body.station,
     })
+    .then(rating => {
+        if (rating) {
+            rating.score = req.body.score;
+            return rating.save();
+        } else {
+            const newRating = new Rating({
+                user: req.currentUser.id,
+                station: req.body.station,
+                score: req.body.score
+            });
+
+            return newRating.save();
+        }
+    })
+    .catch(next);
 }

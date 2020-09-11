@@ -41,6 +41,11 @@ reviews.forEach(review => {
     let reviewBody = review.querySelector('.review-body').innerText;
     const reviewUser = review.querySelector('.review-user').innerText;
 
+    //Needs refactoring
+    if (!deleteBtn) {
+        return;
+    }
+
     deleteBtn.addEventListener('click', event => {
         axios.delete(`${APP_URL}/review/${deleteBtn.value}`)
             .then(() => review.remove())

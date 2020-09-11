@@ -1,6 +1,9 @@
 const ratingBtns = document.querySelectorAll('.btn-rating');
 
 const renderRating = (score) => {
+    if (!score) {
+        score = 1;
+    }
     const ratingIcon = '<i class="fa fa-star-o"></i>';
     const ratingIconActive = '<i class="fa fa-star"></i>';
 
@@ -11,16 +14,18 @@ const renderRating = (score) => {
         ratingBtns[i].innerHTML = ratingIcon;
     }
 };
-renderRating(1);
+renderRating(userScore);
 
 ratingBtns.forEach(btn => btn.addEventListener('click', event => {
     const score = btn.value;
-    renderRating(rating);
-    axios.put(`${APP_ULR}/rating`, {
+    renderRating(score);
+    axios.put(`${APP_URL}/rating`, {
        score,
        station: {
            IDEESS: id,
            district: district
        }
-    });
+    })
+        .then(rating => console.log(rating))
+        .catch(e => console.error(e));
 }));
