@@ -2,16 +2,21 @@ const mongoose = require('mongoose');
 require('./user.model');
 require('./station.model');
 
-const commentSchema = new mongoose.Schema({
+const reviewSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true
     },
     station: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Station',
-        required: true
+        IDEESS: {
+            type: String,
+            required: true
+        },
+        district: {
+            type: String,
+            required: true
+        }
     },
     body: {
         type: String,
@@ -19,5 +24,5 @@ const commentSchema = new mongoose.Schema({
     }
 });
 
-const Comment = mongoose.model('Comment', commentSchema);
-module.exports = Comment;
+const Review = mongoose.model('Review', reviewSchema);
+module.exports = Review;

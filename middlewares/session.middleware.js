@@ -32,3 +32,12 @@ module.exports.checkAuth = (req, res, next) => {
       }
     });
 };
+
+module.exports.isAuthor = (req, res, next) => {
+  const ownerId = req.params.ownerId;
+  if (req.currentUser.id === ownerId) {
+    next();
+  } else {
+    console.error('Auth error');
+  }
+};

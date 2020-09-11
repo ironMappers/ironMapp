@@ -1,3 +1,8 @@
+/* 
+                THIS NEEDS REFACTORING
+
+*/
+
 const regionSelect = document.getElementById('region-selector');
 const provinceSelect = document.getElementById('province-selector');
 const municipioSelect = document.getElementById('municipio-selector');
@@ -39,6 +44,7 @@ const getMunicipios = (province) => {
         .catch(e => console.error(e));
 };
 
+//NAME THIS FUNCTION
 window.addEventListener('load', () => {
     REG_CODES.forEach(CCAA => {
         const regionOption = `<option value="${CCAA.IDCCAA}">${CCAA.CCAA}</option>`;
@@ -51,6 +57,7 @@ window.addEventListener('load', () => {
     });
 });
 
+//REFACTOR THIS
 regionSelect.addEventListener('input', function() {
     const optionIndex = this.selectedIndex;
     const selectedRegion = this.options[optionIndex].value;
