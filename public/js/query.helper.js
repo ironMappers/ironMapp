@@ -1,6 +1,7 @@
 const form = document.getElementById('filter-form');
 form.addEventListener('submit', event => event.preventDefault());
 
+/*PUT ALL URLS INSIDE CONSTANTS.JS*/
 const getStations = (query) => {
     let urlQuery;
     if (query.fuel) {

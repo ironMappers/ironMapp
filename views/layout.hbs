@@ -20,13 +20,11 @@
 
 
     <title>Ironmapp</title>
-
 </head>
 
 <body>
     <nav class="d-flex justify-content-between m-2">
         {{> navbar}}
-
         {{#if currentUser }}
         {{> userNav}}
         {{else}}
@@ -38,13 +36,11 @@
         {{{body}}}
     </main>
 
-    {{!-- This shouldn't be here --}}
+    <script>
+        const APP_URL = 'http://localhost:3000';
+    </script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="/js/geoportal.codes.js"></script>
-    <script src="/js/filter.helper.js"></script>
-    <script src="/js/query.helper.js"></script>
-    <script src="/js/map.js"></script>
-
 </body>
 
 </html>

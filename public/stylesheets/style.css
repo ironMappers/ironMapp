@@ -16,6 +16,10 @@ a {
     padding: 0 1rem;
 }
 
+.hidden {
+    display: none !important;
+}
+
 .form-wrapper {
     width: 50vw;
     margin-bottom: 8rem;
@@ -57,9 +61,21 @@ a {
 	border: none;
 	font: inherit;
 	cursor: pointer;
-	outline: inherit;
+    outline: inherit;
 }
 
-.btn-station span i {
+.btn-rating {
     color: yellow;
+}
+
+#btn-favorite {
+    color: red;
+}
+
+.active {
+    border: 1px solid yellow;
+}
+
+#edit-form {
+    width: 90%;
 }
