@@ -1,4 +1,5 @@
 const Review = require('../models/review.model');
+const Rating = require('../models/rating.model');
 
 module.exports.renderHome = (req, res, next) => {
     res.render('home');
@@ -36,3 +37,9 @@ module.exports.editReview = (req, res, next) => {
         .then(r => res.json(r))
         .catch(next);
 };
+
+module.exports.doRating = (req, res, next) => {
+    Rating.findOneAndUpdate({
+        user: req.currentUser._id,
+    })
+}

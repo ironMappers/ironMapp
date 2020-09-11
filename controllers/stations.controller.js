@@ -24,7 +24,7 @@ module.exports.renderStation = (req, res, next) => {
     } = req.params;
 
     axiosConfig.getStation(stationDistrict)
-    //si pudiera hacer esto directamente con los valores que devuelven las promesas mejor
+    //This would be cleaner if the functions returned objects instead of promises
         .then(response => {
             const districtStations = (response.data.ListaEESSPrecio);
             const station = districtStations.filter(st => st.IDEESS === stationId)[0];
@@ -69,7 +69,6 @@ module.exports.renderStation = (req, res, next) => {
                 };
 
                 //should make a function 'parseProperties' that does all of the above and substitutes undefined properties for 'not available'
-                res.locals.currentStation = JSON.stringify({stationId, stationDistrict});
                 res.render('stations/details', {
                     stationDetails
                 });

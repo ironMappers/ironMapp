@@ -64,8 +64,16 @@ a {
     outline: inherit;
 }
 
-.btn-station span i {
+.btn-rating {
     color: yellow;
+}
+
+#btn-favorite {
+    color: red;
+}
+
+.active {
+    border: 1px solid yellow;
 }
 
 #edit-form {
