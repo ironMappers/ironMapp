@@ -3,14 +3,12 @@ const mongoose = require('mongoose');
 const faker = require('faker');
 
 const User = require('../models/user.model');
-const Station = require('../models/station.model');
-const Comment = require('../models/comment.model');
+const Review = require('../models/review.model');
 const Favorite = require('../models/favorite.model');
 const Rating = require('../models/rating.model');
 
 const users = [];
-const stations = [];
-const comments = [];
+const reviews = [];
 const ratings = [];
 const favorites = [];
 
@@ -25,7 +23,15 @@ const ADMIN = {
 
 const randIndex = (arrayName) => {
    return Math.floor(Math.random() * arrayName.length);
-   //check dis
+};
+
+const randStation = () => {
+    const station = {
+        IDEESS: Math.floor(Math.random() * 5600) + 1,
+        district: Math.floor(Math.random() * 8000 - 14) + 15
+    };
+
+    return station;
 };
 
 const createUsers = (amount) => {
@@ -40,45 +46,34 @@ const createUsers = (amount) => {
     }
 };
 
-
-const createStations = (amount) => {
-    for (let i = 0; i < amount; i++) {
-        const newStation = new Station({
-            IDEES: Math.floor(Math.random() * 5000) + 1
-        });
-
-        stations.push(newStation);
-    }
-};
-
 const createFavorites = (amount) => {
     for (let i = 0; i < amount; i++) {
         const newFavorite = new Favorite({
             user: users[randIndex(users)],
-            station: stations[randIndex(stations)]
+            station: randStation()
         });
 
         favorites.push(newFavorite);
     }
 };
 
-const createComments = (amount) => {
+const createReviews = (amount) => {
     for (let i = 0; i < amount; i++) {
-        const newComment = new Comment({
+        const newReview = new Review({
             user: users[randIndex(users)],
-            station: stations[randIndex(stations)],
+            station: randStation(),
             body: faker.lorem.slug()
         });
 
-        comments.push(newComment);
+        reviews.push(newReview);
     }
 };
 
-createRatings = (amount) => {
+const createRatings = (amount) => {
     for (let i = 0; i < amount; i++) {
         const newRating = new Rating({
             user: users[randIndex(users)],
-            station: stations[randIndex(stations)],
+            station: randStation(),
             score: Math.floor(Math.random() * 5) + 1
         });
 
@@ -89,8 +84,7 @@ createRatings = (amount) => {
 const wipeDatabase = () => {
     return Promise.all([
         User.deleteMany(),
-        Station.deleteMany(),
-        Comment.deleteMany(),
+        Review.deleteMany(),
         Favorite.deleteMany(),
         Rating.deleteMany(),
         User.create(ADMIN)
@@ -103,19 +97,20 @@ const seedDatabase = () => {
             console.log('Database wiped!');
 
             createUsers(10);
-            createStations(40);
-            createComments(20);
+            createReviews(20);
             createFavorites(20);
             createRatings(10);
 
             Promise.all([
                 User.create(users),
-                Station.create(stations),
-                Comment.create(comments),
+                Review.create(reviews),
                 Favorite.create(favorites),
                 Rating.create(ratings),
             ])
-                .then(() => console.log('Database seeded'))
+                .then(() => {
+                    console.log('Database seeded');
+                    mongoose.connection.close();
+                })
                 .catch(e => console.error(e));
         })
         .catch(e => console.error(e));
