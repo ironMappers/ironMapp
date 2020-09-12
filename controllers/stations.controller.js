@@ -8,33 +8,24 @@ function capitalize(string) {
     return result;
 }
 
-function renderReviews(IDEESS, district) {
+function renderReviews(IDEESS) {
     return Review.find({
-            station: {
-                IDEESS,
-                district
-            }
+            'station.IDEESS': IDEESS,
         })
         .populate('user');
 }
 
-function renderRating(IDEESS, district, userId) {
+function renderRating(IDEESS, userId) {
     return Rating.findOne({
-        station: {
-            IDEESS,
-            district
-        },
+        'station.IDEESS': IDEESS,
         user: userId
     });
 }
 
 
-function renderFavorite(IDEESS, district, userId) {
+function renderFavorite(IDEESS, userId) {
     return Favorite.findOne({
-        station: {
-            IDEESS,
-            district
-        },
+        'station.IDEESS': IDEESS,
         user: userId
     });
 }
@@ -47,15 +38,15 @@ module.exports.renderStation = (req, res, next) => {
 
     Promise.all([
             axiosConfig.getStation(stationDistrict),
-            renderReviews(stationId, stationDistrict),
-            renderRating(stationId, stationDistrict, req.currentUser.id),
-            renderFavorite(stationId, stationDistrict, req.currentUser.id),
+            renderReviews(stationId),
+            renderRating(stationId, req.currentUser.id),
+            renderFavorite(stationId, req.currentUser.id),
         ])
         .then(data => {
             const [getStationResponse, reviews, rating, favorite] = data;
             const districtStations = (getStationResponse.data.ListaEESSPrecio);
             const station = districtStations.filter(st => st.IDEESS === stationId)[0];
-            console.log(rating)
+            const isFavorite = (favorite) ? true : false;
 
 
             const stationDetails = {
@@ -63,7 +54,7 @@ module.exports.renderStation = (req, res, next) => {
                 stationDistrict,
                 reviews,
                 rating,
-                isFavorite: false,
+                isFavorite,
                 info: {
                     name: station['Rótulo'],
                     address: {
