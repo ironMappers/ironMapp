@@ -102,7 +102,6 @@ module.exports.renderStation = (req, res, next) => {
                                     res.render('stations/details', {
                                         stationDetails
                                     });
-
                         })
                         .catch(next);
                 })
