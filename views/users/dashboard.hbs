@@ -24,13 +24,14 @@
 </div>
 <div class="container"></div>
     <div class="my-4 row">
-            <div class="col-12">
-                <h2>My favorite stations⛽</h2>
-                {{#each favorite}}
-                    <ul>
-                        <li><a href="http://localhost:3000/station/{{this.station.IDEESS}}/{{this.station.district}}">See Station Details!</a></li>
-                    </ul>
-                {{/each}}
+        <h2>My favorite stations⛽</h2>
+        {{#each favorite}}
+            <div class="my-4 col-12">
+                <h4>{{this.station.owner}}</h4>
+                <h5>{{this.station.address}}</h5>
+                <a href="http://localhost:3000/station/{{this.station.IDEESS}}/{{this.station.district}}">See Station Details!</a>
             </div>
+        {{/each}}
+            
     </div>
 </div>
