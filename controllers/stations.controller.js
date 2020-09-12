@@ -98,11 +98,11 @@ module.exports.renderStation = (req, res, next) => {
                 },
             };
 
+
             //should make a function 'parseProperties' that does all of the above and substitutes undefined properties for 'not available'
             res.render('stations/details', {
                 stationDetails
             });
-
         })
         .catch(next);
 };
