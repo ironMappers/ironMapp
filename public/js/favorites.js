@@ -21,7 +21,9 @@ const addClickToFavorite = favoriteBtn.addEventListener('click', event => {
     axios.put(`${APP_URL}/favorite`, {
        station: {
            district ,
-           IDEESS: id
+           IDEESS: id,
+           address,
+           owner
        }      
     })   
         .then(favorite => console.log(favorite))

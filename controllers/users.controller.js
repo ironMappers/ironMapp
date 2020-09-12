@@ -62,13 +62,11 @@ module.exports.createUser = (req, res, next) => {
 };
 
 module.exports.activateUser = (req, res, next) => {
-    console.log('heey')
     User.findOne({
             "status.token": req.params.token
         })
         .then(user => {
             if (user) {
-                console.log(user)
                 user.status.active = true;
                 user.save()
                     .then(newUser => {
