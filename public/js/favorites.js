@@ -15,17 +15,21 @@ const invertBoolean = (value) => {
     return 'true';
 };
 
-favoriteBtn.addEventListener('click', event => {
+const addClickToFavorite = favoriteBtn.addEventListener('click', event => {
    favoriteBtn.value = invertBoolean(favoriteBtn.value);
    renderFavorite();
     axios.put(`${APP_URL}/favorite`, {
-        station: {
-            district ,
-            IDEESS: id
-        }      
+       station: {
+           district ,
+           IDEESS: id,
+           address,
+           owner
+       }      
     })   
         .then(favorite => console.log(favorite))
         .catch(e => console.error(e));
 });
 
-renderFavorite();
+const addWarningToFavorite = favoriteBtn.addEventListener('click', event => {
+    renderWarning();
+});

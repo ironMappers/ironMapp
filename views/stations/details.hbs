@@ -3,17 +3,18 @@
         <h1>
             {{stationDetails.info.name}}
         </h1>
-        <h2 class="d-flex flex-column">
+        <h2 class="d-flex flex-column" id="address">
             {{stationDetails.info.address.street}}
-            <small>{{stationDetails.info.address.district}}, {{stationDetails.info.address.province}}</small>
+            <small id="locality">{{stationDetails.info.address.district}},
+                {{stationDetails.info.address.province}}</small>
         </h2>
 
     </header>
 
     <section class="d-flex justify-content-between">
         <small><b class="mr-3">OPEN</b>{{stationDetails.info.open}}</small>
-        <div>
-            <button  value="{{stationDetails.isFavorite}}" class="btn-station mr-6" id="btn-favorite"></button>
+        <div id="features-wrapper">
+            <button value="{{stationDetails.isFavorite}}" class="btn-station mr-6" id="btn-favorite"></button>
             <span id="ratings-wrapper">
                 <button value="1" class="btn-station btn-rating" id="rate-1"></button>
                 <button value="2" class="btn-station btn-rating" id="rate-2"></button>
@@ -68,8 +69,10 @@
 
                     {{#owner ../currentUser.id review.user.id}}
                     <ul class="review-btns">
-                        <button value="{{review.id}}/{{review.user.id}}" class="text-muted btn-station edit-btn">Edit</button>
-                        <button value="{{review.id}}/{{review.user.id}}" class="text-danger btn-station delete-btn">Delete</button>
+                        <button value="{{review.id}}/{{review.user.id}}"
+                            class="text-muted btn-station edit-btn">Edit</button>
+                        <button value="{{review.id}}/{{review.user.id}}"
+                            class="text-danger btn-station delete-btn">Delete</button>
                     </ul>
                     {{/owner}}
                 </div>
@@ -89,8 +92,14 @@
     const id = decodeURIComponent("{{{stationDetails.stationId}}}");
     const district = decodeURIComponent("{{stationDetails.stationDistrict}}");
     const userScore = decodeURIComponent("{{stationDetails.rating.score}}");
-    const name = decodeURIComponent
+    const street = decodeURIComponent("{{stationDetails.info.address.street}}");
+    const locality = document.getElementById('locality').innerText;
+    const address = `${street} ${locality}`;
+    const owner = decodeURIComponent("{{stationDetails.info.name}}");
+    const userId = decodeURIComponent("{{currentUser.id}}");
+    const isUserLogged = (userId) ? true : false;
 </script>
 <script src="/js/reviews.js"></script>
 <script src="/js/ratings.js"></script>
 <script src="/js/favorites.js"></script>
+<script src="/js/station.js"></script>

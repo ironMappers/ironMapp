@@ -5,12 +5,12 @@ const user = process.env.NM_USER;
 const pass = process.env.NM_PASS;
 
 const transporter = nodemailer.createTransport({
-    service: 'Gmail',
+    service: 'Gmail', 
     auth: {
         user: user,
         pass: pass
     }
-})
+});
 
 module.exports.sendValidationEmail = ({name, email, id, activationToken}) => {
     transporter.sendMail({
@@ -24,9 +24,5 @@ module.exports.sendValidationEmail = ({name, email, id, activationToken}) => {
         `
     })
     .then(console.log)
-    .catch(console.error)
-
-}
-
-
-
+    .catch(console.error);
+};

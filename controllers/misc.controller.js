@@ -65,6 +65,8 @@ module.exports.doFavorite = (req, res, next) => {
     Favorite.findOne({
             user: req.currentUser._id,
             station: req.body.station,
+            address: req.body.address,
+            owner: req.body.owner
         })
         .then(favorite => {
             if (favorite) {
