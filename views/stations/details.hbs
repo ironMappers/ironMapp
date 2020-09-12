@@ -65,6 +65,7 @@
                     {{!--Need to edit the date with a hbs helper--}}
                     <small class="text-dark">{{review.createdAt}}</small>
 
+
                     {{#owner ../currentUser.id review.user.id}}
                     <ul class="review-btns">
                         <button value="{{review.id}}/{{review.user.id}}" class="text-muted btn-station edit-btn">Edit</button>
