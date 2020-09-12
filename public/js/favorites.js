@@ -15,7 +15,7 @@ const invertBoolean = (value) => {
     return 'true';
 };
 
-const loadFavorites = favoriteBtn.addEventListener('click', event => {
+const addClickToFavorite = favoriteBtn.addEventListener('click', event => {
    favoriteBtn.value = invertBoolean(favoriteBtn.value);
    renderFavorite();
     axios.put(`${APP_URL}/favorite`, {
@@ -28,4 +28,6 @@ const loadFavorites = favoriteBtn.addEventListener('click', event => {
         .catch(e => console.error(e));
 });
 
-renderFavorite();
+const addWarningToFavorite = favoriteBtn.addEventListener('click', event => {
+    renderWarning();
+});

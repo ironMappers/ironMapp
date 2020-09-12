@@ -14,9 +14,8 @@ const renderRating = (score) => {
         ratingBtns[i].innerHTML = ratingIcon;
     }
 };
-renderRating(userScore);
 
-const loadRatings = ratingBtns.forEach(btn => btn.addEventListener('click', event => {
+const addClickToRatings = ratingBtns.forEach(btn => btn.addEventListener('click', event => {
     const score = btn.value;
     renderRating(score);
     axios.put(`${APP_URL}/rating`, {
@@ -28,4 +27,8 @@ const loadRatings = ratingBtns.forEach(btn => btn.addEventListener('click', even
     })
         .then(rating => console.log(rating))
         .catch(e => console.error(e));
+}));
+
+const addWarningToRatings = ratingBtns.forEach(btn => btn.addEventListener('click', event => {
+    renderWarning();
 }));
