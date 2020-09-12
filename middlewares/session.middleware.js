@@ -2,8 +2,10 @@ const User = require('../models/user.model');
 
 
 module.exports.isAuthenticated = (req, res, next) => {
-  if (req.currentUser) {
+  if (req.currentUser && req.currentUser.status.active) {
     next();
+  } else if (req.currentUser) {
+    res.render('users/verification');
   } else {
     //should flash an auth warning
     res.redirect('/login');

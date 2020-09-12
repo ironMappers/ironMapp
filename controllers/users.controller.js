@@ -25,7 +25,6 @@ module.exports.createUser = (req, res, next) => {
         ...req.body,
         avatar: req.file ? req.file.path : undefined
     });
-    console.log(user)
 
     user.save()
         .then(user => {
@@ -63,11 +62,13 @@ module.exports.createUser = (req, res, next) => {
 };
 
 module.exports.activateUser = (req, res, next) => {
+    console.log('heey')
     User.findOne({
             "status.token": req.params.token
         })
         .then(user => {
             if (user) {
+                console.log(user)
                 user.status.active = true;
                 user.save()
                     .then(newUser => {
@@ -128,20 +129,28 @@ module.exports.renderDashboard = (req, res, next) => {
 };
 
 module.exports.renderEditForm = (req, res, next) => {
-    
+
     const id = req.params.id;
 
     User.findById(id)
-        .then( userToEdit => {
+        .then(userToEdit => {
             res.render('users/user-edit', userToEdit);
         })
         .catch(error => next);
 };
 
 module.exports.updateUser = (req, res, next) => {
-    const { username, email, password, avatar } = req.body;
+    const {
+        username,
+        email,
+        password,
+        avatar
+    } = req.body;
 
-    User.findById(req.params.id, { runValidators: true, new: true })
+    User.findById(req.params.id, {
+            runValidators: true,
+            new: true
+        })
         .then(user => {
             if (user) {
                 user.username = username;
@@ -153,7 +162,7 @@ module.exports.updateUser = (req, res, next) => {
                     user.password = password;
                 }
                 user.save();
-                res.redirect('/users/dashboard')
+                res.redirect('/users/dashboard');
 
             } else {
                 res.render(`/users/${user.id}/edit`, {
@@ -162,25 +171,38 @@ module.exports.updateUser = (req, res, next) => {
                             message: 'Your account is not active, check your email!'
                         }
                     }
-                })
+                });
             }
 
         })
-        .catch(error => next)
+        .catch(error => next);
 }
 
 module.exports.deleteUser = (req, res, next) => {
-    console.log(req.params.id)
-    console.log(req.currentUser.id)
     if (req.params.id.toString() === req.currentUser.id.toString()) {
         req.currentUser.remove()
             .then(() => {
-                req.session.destroy()
-                res.redirect("/login")
+                req.session.destroy();
+                res.redirect("/login");
             })
-            .catch(error => next)
+            .catch(error => next);
 
     } else {
-        res.redirect('/users/dashboard')
+        res.redirect('/users/dashboard');
     }
-}
+};
+
+module.exports.reSendValidationEmail = (req, res, next) => {
+    const user = req.currentUser;
+
+    mailer.sendValidationEmail({
+        name: user.username,
+        email: user.email,
+        id: user._id.toString(),
+        activationToken: user.status.token
+    });
+
+    res.render('users/login', {
+        message: 'Check your email for activation'
+    });
+};

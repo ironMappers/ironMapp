@@ -21,12 +21,13 @@ router.get('/', miscController.renderHome);
 router.get('/login', sessionMiddleware.isNotAuthenticated, usersController.renderLogin);
 router.post('/login', sessionMiddleware.isNotAuthenticated, usersController.doLogin);
 
-router.get('/logout', sessionMiddleware.isAuthenticated, usersController.doLogout);
+router.get('/logout', usersController.doLogout);
 
 router.get('/signup', sessionMiddleware.isNotAuthenticated, usersController.renderSignup);
 router.post('/signup', sessionMiddleware.isNotAuthenticated, fileUploader.single('avatar'), usersController.createUser);
-router.get('/users/:id/activate/:token', sessionMiddleware.isAuthenticated, usersController.activateUser);
 
+router.get('/users/:id/activate/:token', usersController.activateUser);
+router.get('/users/email', usersController.reSendValidationEmail);
 
 /*USER*/
 router.get('/users/dashboard', sessionMiddleware.isAuthenticated, usersController.renderDashboard);
