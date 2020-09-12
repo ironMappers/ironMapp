@@ -41,6 +41,8 @@ router.post('/review/create/:stationId/:stationDistrict', sessionMiddleware.isAu
 router.patch('/review/:id/:ownerId', sessionMiddleware.isAuthor, miscController.editReview);
 router.delete('/review/:id/:ownerId', sessionMiddleware.isAuthor, miscController.deleteReview);
 router.put('/rating', sessionMiddleware.isAuthenticated, miscController.doRating);
+router.put('/favorite', sessionMiddleware.isAuthenticated, miscController.doFavorite);
+
 
 
 module.exports = router;

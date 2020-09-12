@@ -1,5 +1,6 @@
 const Review = require('../models/review.model');
 const Rating = require('../models/rating.model');
+const Favorite = require('../models/favorite.model');
 
 module.exports.renderHome = (req, res, next) => {
     res.render('home');
@@ -40,22 +41,42 @@ module.exports.editReview = (req, res, next) => {
 
 module.exports.doRating = (req, res, next) => {
     Rating.findOne({
-        user: req.currentUser._id,
-        station: req.body.station,
-    })
-    .then(rating => {
-        if (rating) {
-            rating.score = req.body.score;
-            return rating.save();
-        } else {
-            const newRating = new Rating({
-                user: req.currentUser.id,
-                station: req.body.station,
-                score: req.body.score
-            });
+            user: req.currentUser._id,
+            station: req.body.station,
+        })
+        .then(rating => {
+            if (rating) {
+                rating.score = req.body.score;
+                return rating.save();
+            } else {
+                const newRating = new Rating({
+                    user: req.currentUser.id,
+                    station: req.body.station,
+                    score: req.body.score
+                });
 
-            return newRating.save();
-        }
-    })
-    .catch(next);
-}
+                return newRating.save();
+            }
+        })
+        .catch(next);
+};
+
+module.exports.doFavorite = (req, res, next) => {
+    Favorite.findOne({
+            user: req.currentUser._id,
+            station: req.body.station,
+        })
+        .then(favorite => {
+            if (favorite) {
+                return favorite.remove();
+            } else {
+                const newFavorite = new Favorite({
+                    user: req.currentUser.id,
+                    station: req.body.station,
+                });
+
+                return newFavorite.save();
+            }
+        })
+        .catch(next);
+};
