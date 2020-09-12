@@ -44,5 +44,4 @@ router.put('/rating', sessionMiddleware.isAuthenticated, miscController.doRating
 router.put('/favorite', sessionMiddleware.isAuthenticated, miscController.doFavorite);
 
 
-
 module.exports = router;

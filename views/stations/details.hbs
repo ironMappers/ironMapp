@@ -13,9 +13,7 @@
     <section class="d-flex justify-content-between">
         <small><b class="mr-3">OPEN</b>{{stationDetails.info.open}}</small>
         <div>
-
             <button  value="{{stationDetails.isFavorite}}" class="btn-station mr-6" id="btn-favorite"></button>
-
             <span id="ratings-wrapper">
                 <button value="1" class="btn-station btn-rating" id="rate-1"></button>
                 <button value="2" class="btn-station btn-rating" id="rate-2"></button>
@@ -66,6 +64,7 @@
                 <div class="d-flex justify-content-between">
                     {{!--Need to edit the date with a hbs helper--}}
                     <small class="text-dark">{{review.createdAt}}</small>
+
 
                     {{#owner ../currentUser.id review.user.id}}
                     <ul class="review-btns">
