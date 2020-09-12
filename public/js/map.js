@@ -9,11 +9,14 @@ const submitQueryButton = document.getElementById('query-button');
 submitQueryButton.addEventListener('click', () => {
     getStations(query)
         .then(response => {
+            const markerArr = [];
             response.data.ListaEESSPrecio.forEach(station => {
                 
                 const lat = (station.Latitud).replace(',', '.');
                 const lon = (station['Longitud (WGS84)']).replace(',', '.');
                 const marker = L.marker([lat, lon]);
+                markerArr.push(marker)
+                
 
                 marker.addTo(mymap).on('click', function(event) {
                     const popup = L.popup();
@@ -26,6 +29,8 @@ submitQueryButton.addEventListener('click', () => {
                         .openOn(mymap);
                 });
             });
+            const group = new L.featureGroup(markerArr);
+            mymap.fitBounds(group.getBounds());
 
         })
         .catch(e => console.error(e)) ;

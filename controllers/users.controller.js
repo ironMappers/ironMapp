@@ -140,26 +140,22 @@ module.exports.renderEditForm = (req, res, next) => {
 module.exports.updateUser = (req, res, next) => {
     const { username, email, password, avatar } = req.body;
 
-    const updatedUser = {
-        username,
-        email
-    }
-    if (req.file) {
-        updatedUser.avatar = req.file.path
-    }
-    if (password) {
-        updatedUser.password = password
-    }
-
-    console.log(updatedUser)
-
-    User.findByIdAndUpdate(req.params._id, updatedUser, { runValidators: true, new: true })
+    User.findById(req.params.id, { runValidators: true, new: true })
         .then(user => {
-            console.log(user)
             if (user) {
+                user.username = username;
+                user.email = email;
+                if (req.file) {
+                    user.avatar = req.file.path;
+                }
+                if (password) {
+                    user.password = password;
+                }
+                user.save();
                 res.redirect('/users/dashboard')
+
             } else {
-                res.render(`/users/${user._id}/edit`, {
+                res.render(`/users/${user.id}/edit`, {
                     error: {
                         validation: {
                             message: 'Your account is not active, check your email!'
@@ -167,6 +163,23 @@ module.exports.updateUser = (req, res, next) => {
                     }
                 })
             }
+
         })
-    .catch(error => next)
+        .catch(error => next)
+}
+
+module.exports.deleteUser = (req, res, next) => {
+    console.log(req.params.id)
+    console.log(req.currentUser.id)
+    if (req.params.id.toString() === req.currentUser.id.toString()) {
+        req.currentUser.remove()
+            .then(() => {
+                req.session.destroy()
+                res.redirect("/login")
+            })
+            .catch(error => next)
+
+    } else {
+        res.redirect('/users/dashboard')
+    }
 }
