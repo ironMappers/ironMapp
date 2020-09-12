@@ -4,7 +4,7 @@ const Rating = require('../models/rating.model');
 const Favorite = require('../models/favorite.model');
 
 function capitalize(string) {
-    const result = string.split(' ').map(word => word[0].toUpperCase() + word.slice(1).toLowerCase()).join(' ');
+    const result = string.split(' ').filter(v => v).map(word => word[0].toUpperCase() + word.slice(1).toLowerCase()).join(' ');
     return result;
 }
 
@@ -48,7 +48,6 @@ module.exports.renderStation = (req, res, next) => {
             const station = districtStations.filter(st => st.IDEESS === stationId)[0];
             const isFavorite = (favorite) ? true : false;
 
-
             const stationDetails = {
                 stationId,
                 stationDistrict,
@@ -88,6 +87,7 @@ module.exports.renderStation = (req, res, next) => {
                     hidrogen: station['Precio Hidrogeno']
                 },
             };
+            
 
 
             //should make a function 'parseProperties' that does all of the above and substitutes undefined properties for 'not available'

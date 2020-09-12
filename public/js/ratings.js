@@ -16,7 +16,7 @@ const renderRating = (score) => {
 };
 renderRating(userScore);
 
-ratingBtns.forEach(btn => btn.addEventListener('click', event => {
+const loadRatings = ratingBtns.forEach(btn => btn.addEventListener('click', event => {
     const score = btn.value;
     renderRating(score);
     axios.put(`${APP_URL}/rating`, {

@@ -27,8 +27,12 @@ router.get('/signup', sessionMiddleware.isNotAuthenticated, usersController.rend
 router.post('/signup', sessionMiddleware.isNotAuthenticated, fileUploader.single('avatar'), usersController.createUser);
 router.get('/users/:id/activate/:token', sessionMiddleware.isAuthenticated, usersController.activateUser);
 
+
 /*USER*/
 router.get('/users/dashboard', sessionMiddleware.isAuthenticated, usersController.renderDashboard);
+router.get('/users/:id/edit', sessionMiddleware.isAuthenticated, usersController.renderEditForm);
+router.post('/users/:id/edit', sessionMiddleware.isAuthenticated, fileUploader.single('avatar'), usersController.updateUser);  
+router.post('/users/:id/delete', sessionMiddleware.isAuthenticated, usersController.deleteUser); 
 
 /*STATIONS*/
 router.get('/station/:stationId/:stationDistrict', stationsController.renderStation);

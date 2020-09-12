@@ -13,7 +13,7 @@
     <section class="d-flex justify-content-between">
         <small><b class="mr-3">OPEN</b>{{stationDetails.info.open}}</small>
         <div>
-            <button  value="{{stationDetails.isFavorite}}" class="btn-station mr-6" id="btn-favorite"></button>
+            <button value="{{stationDetails.isFavorite}}" class="btn-station mr-6" id="btn-favorite"></button>
             <span id="ratings-wrapper">
                 <button value="1" class="btn-station btn-rating" id="rate-1"></button>
                 <button value="2" class="btn-station btn-rating" id="rate-2"></button>
@@ -68,8 +68,10 @@
 
                     {{#owner ../currentUser.id review.user.id}}
                     <ul class="review-btns">
-                        <button value="{{review.id}}/{{review.user.id}}" class="text-muted btn-station edit-btn">Edit</button>
-                        <button value="{{review.id}}/{{review.user.id}}" class="text-danger btn-station delete-btn">Delete</button>
+                        <button value="{{review.id}}/{{review.user.id}}"
+                            class="text-muted btn-station edit-btn">Edit</button>
+                        <button value="{{review.id}}/{{review.user.id}}"
+                            class="text-danger btn-station delete-btn">Delete</button>
                     </ul>
                     {{/owner}}
                 </div>
@@ -89,6 +91,8 @@
     const id = decodeURIComponent("{{{stationDetails.stationId}}}");
     const district = decodeURIComponent("{{stationDetails.stationDistrict}}");
     const userScore = decodeURIComponent("{{stationDetails.rating.score}}");
+    const userId = decodeURIComponent("{{currentUser.id}}");
+    const isUserLogged = (userId) ? true : false;
 </script>
 <script src="/js/reviews.js"></script>
 <script src="/js/ratings.js"></script>

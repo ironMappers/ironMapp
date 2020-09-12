@@ -25,6 +25,7 @@ module.exports.createUser = (req, res, next) => {
         ...req.body,
         avatar: req.file ? req.file.path : undefined
     });
+    console.log(user)
 
     user.save()
         .then(user => {
@@ -123,5 +124,63 @@ module.exports.renderSignup = (req, res, next) => {
 };
 
 module.exports.renderDashboard = (req, res, next) => {
-    res.send(req.currentUser);
+    res.render('users/dashboard', req.currentUser);
 };
+
+module.exports.renderEditForm = (req, res, next) => {
+    
+    const id = req.params.id;
+
+    User.findById(id)
+        .then( userToEdit => {
+            res.render('users/user-edit', userToEdit);
+        })
+        .catch(error => next);
+};
+
+module.exports.updateUser = (req, res, next) => {
+    const { username, email, password, avatar } = req.body;
+
+    User.findById(req.params.id, { runValidators: true, new: true })
+        .then(user => {
+            if (user) {
+                user.username = username;
+                user.email = email;
+                if (req.file) {
+                    user.avatar = req.file.path;
+                }
+                if (password) {
+                    user.password = password;
+                }
+                user.save();
+                res.redirect('/users/dashboard')
+
+            } else {
+                res.render(`/users/${user.id}/edit`, {
+                    error: {
+                        validation: {
+                            message: 'Your account is not active, check your email!'
+                        }
+                    }
+                })
+            }
+
+        })
+        .catch(error => next)
+}
+
+module.exports.deleteUser = (req, res, next) => {
+    console.log(req.params.id)
+    console.log(req.currentUser.id)
+    if (req.params.id.toString() === req.currentUser.id.toString()) {
+        req.currentUser.remove()
+            .then(() => {
+                req.session.destroy()
+                res.redirect("/login")
+            })
+            .catch(error => next)
+
+    } else {
+        res.redirect('/users/dashboard')
+    }
+}
