@@ -13,7 +13,12 @@
     <section class="d-flex justify-content-between">
         <small><b class="mr-3">OPEN</b>{{stationDetails.info.open}}</small>
         <div>
-            <button class="btn-station mr-6" id="btn-favorite"><i class="fa fa-heart-o"></i></button>
+            
+            <button class="btn-station mr-6" id="btn-favorite" stationId="{{stationDetails.stationId}}" district="{{stationDetails.stationDistrict}}">
+                <i class="fa fa-heart-o"></i>
+            </button>
+            
+            
             <span id="ratings-wrapper">
                 <button value="1" class="btn-station btn-rating" id="rate-1"></button>
                 <button value="2" class="btn-station btn-rating" id="rate-2"></button>
@@ -91,3 +96,4 @@
 </script>
 <script src="/js/reviews.js"></script>
 <script src="/js/ratings.js"></script>
+<script src="/js/favorite.js"></script>

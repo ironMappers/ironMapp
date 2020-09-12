@@ -1,6 +1,7 @@
 const axiosConfig = require('../configs/axios.config');
 const Review = require('../models/review.model');
 const Rating = require('../models/rating.model');
+const Favorite = require('../models/favorite.model');
 
 function capitalize(string) {
     const result = string.split(' ').map(word => word[0].toUpperCase() + word.slice(1).toLowerCase()).join(' ');
@@ -33,6 +34,8 @@ module.exports.renderStation = (req, res, next) => {
         stationDistrict
     } = req.params;
 
+    // console.log(stationId)
+
     axiosConfig.getStation(stationDistrict)
         //This would be cleaner if the functions returned objects instead of promises
         .then(response => {
@@ -42,7 +45,7 @@ module.exports.renderStation = (req, res, next) => {
             renderReviews(stationId, stationDistrict).then(reviews => {
                     renderRatings(stationId, stationDistrict, req.currentUser.id)
                         .then(rating => {
-                            console.log(reviews)
+                            // console.log(reviews)
                             const stationDetails = {
                                 stationId,
                                 stationDistrict,
@@ -84,8 +87,10 @@ module.exports.renderStation = (req, res, next) => {
 
                             //should make a function 'parseProperties' that does all of the above and substitutes undefined properties for 'not available'
                             res.render('stations/details', {
-                                stationDetails
+                                stationDetails,
+                                
                             });
+                            // console.log(stationDetails)
                         })
                         .catch(next);
                 })
@@ -93,3 +98,31 @@ module.exports.renderStation = (req, res, next) => {
         })
         .catch(next);
 };
+
+module.exports.addFavorite = (req, res, next) => {
+
+    const userId = req.currentUser._id;
+    const stationId = req.params.stationId;
+    const district = req.params.district
+
+    const params = { user: req.currentUser._id, station: req.params.stationId, district:req.params.district};
+    console.log(params)
+
+    const newFavorite = new Favorite({
+        user:userId,
+        station: {
+            IDEESS: stationId,
+            district: district
+        }
+    })
+
+    Favorite.findOne({user: userId, station: {IDEESS: stationId, district}})
+        .then(favorite => {
+            if (favorite) {
+                favorite.remove()
+            } else {
+                newFavorite.save()
+            }
+        })
+        .catch(next)
+}

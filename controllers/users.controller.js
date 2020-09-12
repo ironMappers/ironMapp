@@ -128,10 +128,12 @@ module.exports.renderDashboard = (req, res, next) => {
 };
 
 module.exports.renderEditForm = (req, res, next) => {
-    const id = req.params;
+    const id = req.params.id;
+    console.log(id)
 
     User.findById(id)
         .then( userToEdit => {
+            
             res.render('users/user-edit', userToEdit);
         })
         .catch(error => next);
@@ -140,7 +142,7 @@ module.exports.renderEditForm = (req, res, next) => {
 module.exports.updateUser = (req, res, next) => {
     const { username, email, password, avatar } = req.body;
 
-    User.findById(req.params._id, { runValidators: true, new: true })
+    User.findById(req.params.id, { runValidators: true, new: true })
         .then(user => {
             if (user) {
                 user.username = username;
@@ -155,7 +157,7 @@ module.exports.updateUser = (req, res, next) => {
                 res.redirect('/users/dashboard')
 
             } else {
-                res.render(`/users/${user._id}/edit`, {
+                res.render(`/users/${user.id}/edit`, {
                     error: {
                         validation: {
                             message: 'Your account is not active, check your email!'
@@ -169,9 +171,9 @@ module.exports.updateUser = (req, res, next) => {
 }
 
 module.exports.deleteUser = (req, res, next) => {
-    console.log(req.params._id)
-    console.log(req.currentUser._id)
-    if (req.params._id.toString() === req.currentUser._id.toString()) {
+    console.log(req.params.id)
+    console.log(req.currentUser.id)
+    if (req.params.id.toString() === req.currentUser.id.toString()) {
         req.currentUser.remove()
             .then(() => {
                 req.session.destroy()

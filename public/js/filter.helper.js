@@ -31,7 +31,7 @@ const getMunicipios = (province) => {
     //There's probably a more elegant way to do this
     window.setTimeout(() => {
         municipioSelect.classList.remove('hidden');
-    }, 1000);
+    }, 100);
     municipioSelect.innerHTML = '<option value="">Municipio</option>';
     axios.get(`https://thingproxy.freeboard.io/fetch/https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/Listados/MunicipiosPorProvincia/${province}`)
         .then(response => {
