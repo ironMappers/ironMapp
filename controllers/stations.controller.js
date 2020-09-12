@@ -15,18 +15,24 @@ function renderReviews(IDEESS) {
         .populate('user');
 }
 
-function renderRating(IDEESS, userId) {
+function renderRating(IDEESS, user) {
+    if (!user) {
+        return;
+    }
     return Rating.findOne({
         'station.IDEESS': IDEESS,
-        user: userId
+        user: user.id
     });
 }
 
 
-function renderFavorite(IDEESS, userId) {
+function renderFavorite(IDEESS, user) {
+    if (!user) {
+        return;
+    }
     return Favorite.findOne({
         'station.IDEESS': IDEESS,
-        user: userId
+        user: user.id
     });
 }
 
@@ -39,8 +45,8 @@ module.exports.renderStation = (req, res, next) => {
     Promise.all([
             axiosConfig.getStation(stationDistrict),
             renderReviews(stationId),
-            renderRating(stationId, req.currentUser.id),
-            renderFavorite(stationId, req.currentUser.id),
+            renderRating(stationId, req.currentUser),
+            renderFavorite(stationId, req.currentUser),
         ])
         .then(data => {
             const [getStationResponse, reviews, rating, favorite] = data;
