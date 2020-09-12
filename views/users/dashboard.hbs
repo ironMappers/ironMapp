@@ -9,10 +9,10 @@
             <p></p>
             <p>{{email}}</p>
 
-            <a class="btn btn-secondary" href="/users/{{_id}}/edit">
+            <a class="btn btn-secondary" href="/users/{{id}}/edit">
             <i class="fa fa-edit mr-2"></i>Edit</a>
 
-            <form action="/users/5f429a5423429e0034aa4db9/delete" method="POST" class="mt-2">
+            <form action="/users/{{id}}/delete" method="POST" class="mt-2">
                 <button type="submit" class="btn btn-danger">
                     <i class="fa fa-trash mr-2"></i>
                     Remove account

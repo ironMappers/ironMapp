@@ -128,7 +128,8 @@ module.exports.renderDashboard = (req, res, next) => {
 };
 
 module.exports.renderEditForm = (req, res, next) => {
-    const id = req.params;
+    
+    const id = req.params.id;
 
     User.findById(id)
         .then( userToEdit => {
