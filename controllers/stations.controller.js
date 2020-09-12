@@ -18,7 +18,7 @@ function renderReviews(IDEESS, district) {
         .populate('user');
 }
 
-function renderRatings(IDEESS, district, userId) {
+function renderRating(IDEESS, district, userId) {
     return Rating.findOne({
         station: {
             IDEESS,
@@ -36,9 +36,7 @@ function renderFavorite(IDEESS, district, userId) {
             district
         },
         user: userId
-    })
-        .then(favorite => favorite)
-        .catch(e => console.error(e));
+    });
 }
 
 module.exports.renderStation = (req, res, next) => {
@@ -47,66 +45,64 @@ module.exports.renderStation = (req, res, next) => {
         stationDistrict
     } = req.params;
 
-    axiosConfig.getStation(stationDistrict)
-        //This would be cleaner if the functions returned objects instead of promises
-        .then(response => {
-            const districtStations = (response.data.ListaEESSPrecio);
+    Promise.all([
+            axiosConfig.getStation(stationDistrict),
+            renderReviews(stationId, stationDistrict),
+            renderRating(stationId, stationDistrict, req.currentUser.id),
+            renderFavorite(stationId, stationDistrict, req.currentUser.id),
+        ])
+        .then(data => {
+            const [getStationResponse, reviews, rating, favorite] = data;
+            const districtStations = (getStationResponse.data.ListaEESSPrecio);
             const station = districtStations.filter(st => st.IDEESS === stationId)[0];
+            console.log(rating)
 
-            renderReviews(stationId, stationDistrict).then(reviews => {
-                    renderRatings(stationId, stationDistrict, req.currentUser.id)
-                        .then(rating => {
-                            console.log(renderFavorite(stationId, stationDistrict, req.currentUser.id))
 
-                                    const stationDetails = {
-                                        stationId,
-                                        stationDistrict,
-                                        reviews,
-                                        rating,
-                                        isFavorite: false,
-                                        info: {
-                                            name: station['Rótulo'],
-                                            address: {
-                                                street: capitalize(station['Dirección']),
-                                                district: station.Municipio,
-                                                province: capitalize(station.Provincia)
-                                            },
-                                            open: station.Horario
-                                        },
-                                        prices: {
-                                            bio: {
-                                                biodiesel: station['Precio Biodiesel'],
-                                                bioetanol: station['Precio Bioetanol'],
-                                            },
-                                            gas: {
-                                                compressed: station['Precio Gas Natural Comprimido'],
-                                                liquefied: station['Precio Gas Natural Licuado']
-                                            },
-                                            gasoil: {
-                                                a: station['Precio Gasoleo A'],
-                                                b: station['Precio Gasoleo B'],
-                                                premium: station['Precio Gasoleo Premium']
-                                            },
-                                            petrol: {
-                                                octanes95E10: station['Precio Gasolina 95 E10'],
-                                                octanes95E5: station['Precio Gasolina 95 E5'],
-                                                octanes95E5Premium: station['Precio Gasolina 95 E5 Premium'],
-                                                octanes98E10: station['Precio Gasolina 98 E10'],
-                                                octanes98E5: station['Precio Gasolina 98 E5'],
-                                            },
-                                            hidrogen: station['Precio Hidrogeno']
-                                        },
-                                    };
+            const stationDetails = {
+                stationId,
+                stationDistrict,
+                reviews,
+                rating,
+                isFavorite: false,
+                info: {
+                    name: station['Rótulo'],
+                    address: {
+                        street: capitalize(station['Dirección']),
+                        district: station.Municipio,
+                        province: capitalize(station.Provincia)
+                    },
+                    open: station.Horario
+                },
+                prices: {
+                    bio: {
+                        biodiesel: station['Precio Biodiesel'],
+                        bioetanol: station['Precio Bioetanol'],
+                    },
+                    gas: {
+                        compressed: station['Precio Gas Natural Comprimido'],
+                        liquefied: station['Precio Gas Natural Licuado']
+                    },
+                    gasoil: {
+                        a: station['Precio Gasoleo A'],
+                        b: station['Precio Gasoleo B'],
+                        premium: station['Precio Gasoleo Premium']
+                    },
+                    petrol: {
+                        octanes95E10: station['Precio Gasolina 95 E10'],
+                        octanes95E5: station['Precio Gasolina 95 E5'],
+                        octanes95E5Premium: station['Precio Gasolina 95 E5 Premium'],
+                        octanes98E10: station['Precio Gasolina 98 E10'],
+                        octanes98E5: station['Precio Gasolina 98 E5'],
+                    },
+                    hidrogen: station['Precio Hidrogeno']
+                },
+            };
 
-                                    //should make a function 'parseProperties' that does all of the above and substitutes undefined properties for 'not available'
-                                    res.render('stations/details', {
-                                        stationDetails
-                                    });
+            //should make a function 'parseProperties' that does all of the above and substitutes undefined properties for 'not available'
+            res.render('stations/details', {
+                stationDetails
+            });
 
-                        })
-                        .catch(next);
-                })
-                .catch(next);
         })
         .catch(next);
 };
