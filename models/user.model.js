@@ -31,7 +31,8 @@ const userSchema = new mongoose.Schema({
         trim: true
     },
     avatar: {
-        type: String
+        type: String,
+        default: 'https://64.media.tumblr.com/371214b4b09be648d557658058c32eb9/tumblr_mz743bFtIW1s58mxao1_540.jpg'
     },
     status: {
         active: {

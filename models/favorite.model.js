@@ -15,6 +15,14 @@ const favoriteSchema = new mongoose.Schema({
         district: {
             type: String,
             required: true
+        },
+        address: {
+            type: String,
+            required: true
+        },
+        owner: { 
+            type: String,
+            required:true
         }
     }
 });

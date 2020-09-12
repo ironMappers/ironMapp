@@ -3,9 +3,10 @@
         <h1>
             {{stationDetails.info.name}}
         </h1>
-        <h2 class="d-flex flex-column">
+        <h2 class="d-flex flex-column" id="address">
             {{stationDetails.info.address.street}}
-            <small>{{stationDetails.info.address.district}}, {{stationDetails.info.address.province}}</small>
+            <small id="locality">{{stationDetails.info.address.district}},
+                {{stationDetails.info.address.province}}</small>
         </h2>
 
     </header>
@@ -91,6 +92,10 @@
     const id = decodeURIComponent("{{{stationDetails.stationId}}}");
     const district = decodeURIComponent("{{stationDetails.stationDistrict}}");
     const userScore = decodeURIComponent("{{stationDetails.rating.score}}");
+    const street = decodeURIComponent("{{stationDetails.info.address.street}}");
+    const locality = document.getElementById('locality').innerText;
+    const address = `${street} ${locality}`;
+    const owner = decodeURIComponent("{{stationDetails.info.name}}");
     const userId = decodeURIComponent("{{currentUser.id}}");
     const isUserLogged = (userId) ? true : false;
 </script>
