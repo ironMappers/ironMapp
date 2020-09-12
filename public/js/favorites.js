@@ -19,10 +19,10 @@ favoriteBtn.addEventListener('click', event => {
    favoriteBtn.value = invertBoolean(favoriteBtn.value);
    renderFavorite();
     axios.put(`${APP_URL}/favorite`, {
-       station: {
-           district ,
-           IDEESS: id
-       }      
+        station: {
+            district ,
+            IDEESS: id
+        }      
     })   
         .then(favorite => console.log(favorite))
         .catch(e => console.error(e));
