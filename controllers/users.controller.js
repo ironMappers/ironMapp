@@ -165,7 +165,6 @@ module.exports.renderDashboard = (req, res, next) => {
 
     Favorite.find({user})
         .then(favorite => {
-            console.log({user, favorite})
             res.render('users/dashboard', {user, favorite});
         })
         .catch(next)
