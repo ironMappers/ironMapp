@@ -9,10 +9,14 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-} 
+}
 
 #mapid { 
     height: 50vh;
+}
+
+.card {
+    background-color: #BCBEC0;
 }
 
 .hidden {
@@ -33,10 +37,6 @@
      font-size: 2.3rem;
  }
 
-.review-avatar-img {
-    height: 6rem;
-}
-
 .btn-station {
     background: none;
 	color: inherit;
@@ -46,16 +46,52 @@
     outline: inherit;
 }
 
+#adress h4 {
+    text-align: right;
+}
+
+button:focus {
+    outline:none
+}
+
+#gasoil {
+    background-color: #F7941D;
+    padding: 10px 50px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#petrol {
+    background-color: #F7941D;
+    padding: 10px 50px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#review {
+    background-color: #FFF;
+    border-radius: 5px;
+    padding: 0px 20px;
+}
+
+#name {
+    color: #F7941D;
+}
+
 .btn-rating {
-    color: yellow;
+    color: #fde400;
 }
 
 #btn-favorite {
-    color: red;
+    color: #c40000;
+    border: none;
+}
+#btn-favorite:active {
+    border: none;
 }
 
 .active {
-    border: 1px solid yellow;
+    border: 1px solid #fde400;
 }
 
 #edit-form {
@@ -110,14 +146,57 @@ a:hover {
 }
 
 footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
     background-color: #6c757d;
-    color:#FFF;
+    color: #FFF;
     text-align: center;
-    position:absolute;
-    bottom:0;
-    width:100%;
-    height:10vh;
-}
+    margin-top: 100px;
+ }
 footer p {
-    padding-top: 3vh;
+    margin-top: 10px;
 }
+
+.avatar {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    margin: 10px;
+}
+
+.review-avatar {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin: 10px;
+}
+
+.favorites a {
+    text-decoration: none;
+    color: #000;
+}
+
+.favorites {
+    padding: 10px;
+    background-color: #BCBEC0;
+    border-radius: 10px;
+}
+
+.favorites:hover {
+    padding: 10px;
+    background-color: #F7941D;
+    border-radius: 10px;
+}
+
+.fav-container , .card-details{
+    margin-bottom:100px;
+}
+
+.station-title {
+    color: #F7941D;
+    padding-top: 50px;
+}
+

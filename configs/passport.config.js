@@ -24,7 +24,7 @@ const google = new GoogleStrategy(
     {
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: "/auth/google"
+    callbackURL: "/login/google"
     },
     (accessToken, refreshToken, profile, next) => {
 
@@ -63,7 +63,7 @@ const slack = new SlackStrategy(
     {
       clientID: process.env.SLACK_CLIENT_ID,
       clientSecret: process.env.SLACK_CLIENT_SECRET,
-      callbackUrl: "/auth/slack",
+      callbackUrl: "/login/slack",
     },
     (accessToken, refreshToken, profile, next) => {
       User.findOne({ "social.slack": profile.id })
