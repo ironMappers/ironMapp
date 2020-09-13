@@ -18,6 +18,10 @@ const stationsController = require('../controllers/stations.controller');
 router.get('/', miscController.renderHome);
 
 /*AUTH*/
+
+router.get('/login/google', sessionMiddleware.isNotAuthenticated, usersController.loginGoogle);
+router.get('/login/slack', sessionMiddleware.isNotAuthenticated, usersController.loginSlack);
+
 router.get('/login', sessionMiddleware.isNotAuthenticated, usersController.renderLogin);
 router.post('/login', sessionMiddleware.isNotAuthenticated, usersController.doLogin);
 
