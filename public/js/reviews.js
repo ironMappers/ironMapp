@@ -17,7 +17,7 @@ postForm.addEventListener('submit', event => {
             //this can go in a function
             const newReview = `<article class="card mb-4 bx-2">
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <p><b>${review.data.user} says:</b> ${review.data.body}</p>
+                                            <p><b>${review.data.user.username} says:</b> ${review.data.body}</p>
                                             <a href="/users/details/"${review.data.user}><img src="${review.user}" alt="user avatar" class="review-avatar-img"></a>
                                         </div>
                                         <div class="d-flex justify-content-between">

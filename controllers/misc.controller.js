@@ -22,7 +22,9 @@ module.exports.createReview = (req, res, next) => {
 
     return newReview.save()
         .then(review => {
-            return Review.findById(review.id).populate('user');
+            Review.findById(review.id).populate('user')
+                .then(populatedReview => res.json(populatedReview))
+                .catch(next);
         })
         .catch(next);
 };
