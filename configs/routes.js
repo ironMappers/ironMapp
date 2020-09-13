@@ -18,6 +18,9 @@ const stationsController = require('../controllers/stations.controller');
 router.get('/', miscController.renderHome);
 
 /*AUTH*/
+
+router.get('/auth/google/callback', sessionMiddleware.isNotAuthenticated, usersController.authGoogleCallback);
+
 router.get('/login', sessionMiddleware.isNotAuthenticated, usersController.renderLogin);
 router.post('/login', sessionMiddleware.isNotAuthenticated, usersController.doLogin);
 

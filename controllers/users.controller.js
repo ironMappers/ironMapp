@@ -14,6 +14,26 @@ const validationError = {
     }
 };
 
+module.exports.authGoogleCallback = (req, res, next) => {
+    const passportController = passport.authenticate( "google",
+        {
+            scope: [
+              'https://www.googleapis.com/auth/userinfo.profile',
+              'https://www.googleapis.com/auth/userinfo.email'
+            ]
+        },
+        (error, user) => {
+            if (error) {
+                next(error);
+            } else {
+                req.session.userId = user._id;
+                res.redirect('/login');
+            }
+        }
+    )
+    passportController(req, res, next);
+};
+
 module.exports.renderLogin = (req, res, next) => {
     res.render('users/login');
 };
