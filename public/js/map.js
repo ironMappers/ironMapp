@@ -5,20 +5,22 @@ L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x
 }).addTo(mymap);
 
 const submitQueryButton = document.getElementById('query-button');
-
+let layerGroup = L.layerGroup().addTo(mymap);
 submitQueryButton.addEventListener('click', () => {
     getStations(query)
         .then(response => {
             const markerArr = [];
+            layerGroup.clearLayers();
+
             response.data.ListaEESSPrecio.forEach(station => {
                 
                 const lat = (station.Latitud).replace(',', '.');
                 const lon = (station['Longitud (WGS84)']).replace(',', '.');
                 const marker = L.marker([lat, lon]);
                 markerArr.push(marker)
-                
 
-                marker.addTo(mymap).on('click', function(event) {
+                marker.addTo(layerGroup);
+                marker.on('click', function(event) {
                     const popup = L.popup();
                     popup
                         .setLatLng(event.latlng)
@@ -29,9 +31,8 @@ submitQueryButton.addEventListener('click', () => {
                         .openOn(mymap);
                 });
             });
-            const group = new L.featureGroup(markerArr);
+            group = new L.featureGroup(markerArr);
             mymap.fitBounds(group.getBounds());
-
         })
         .catch(e => console.error(e)) ;
 });

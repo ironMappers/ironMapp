@@ -1,18 +1,18 @@
 <div class="container">
     <div class="my-4 row">
         <div class="col-2">
-            <img class=" w-100 avatar" src={{avatar}}>
+            <img class=" w-100 avatar" src={{user.avatar}}>
         </div>
 
         <div class="col-10">
-            <h1>{{username}}</h1>
+            <h1>{{user.username}}</h1>
             <p></p>
-            <p>{{email}}</p>
+            <p>{{user.email}}</p>
 
-            <a class="btn btn-secondary" href="/users/{{id}}/edit">
+            <a class="btn btn-secondary" href="/users/{{user._id}}/edit">
             <i class="fa fa-edit mr-2"></i>Edit</a>
 
-            <form action="/users/{{id}}/delete" method="POST" class="mt-2">
+            <form action="/users/{{user._id}}/delete" method="POST" class="mt-2">
                 <button type="submit" class="btn btn-danger">
                     <i class="fa fa-trash mr-2"></i>
                     Remove account
@@ -20,10 +20,18 @@
             </form>
         <div>  
     </div>
+    
+</div>
+<div class="container"></div>
     <div class="my-4 row">
-        <div class="col-12">
-            <h2>My favorite stations⛽</h2>
-        </div>
-        
+        <h2>My favorite stations⛽</h2>
+        {{#each favorite}}
+            <div class="my-4 col-12">
+                <h4>{{this.station.owner}}</h4>
+                <h5>{{this.station.address}}</h5>
+                <a href="http://localhost:3000/station/{{this.station.IDEESS}}/{{this.station.district}}">See Station Details!</a>
+            </div>
+        {{/each}}
+            
     </div>
 </div>

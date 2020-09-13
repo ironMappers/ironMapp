@@ -1,5 +1,7 @@
+const axiosConfig = require('../configs/axios.config');
 const mongoose = require('mongoose');
 const User = require('../models/user.model');
+const Favorite = require('../models/favorite.model')
 const mailer = require('../configs/mailer.config');
 const passport = require('passport');
 
@@ -123,7 +125,16 @@ module.exports.renderSignup = (req, res, next) => {
 };
 
 module.exports.renderDashboard = (req, res, next) => {
-    res.render('users/dashboard', req.currentUser);
+    const user = req.currentUser;
+    const username = req.currentUser.username;
+    const email = req.currentUser.email;
+    const avatar = req.currentUser.avatar;
+
+    Favorite.find({user})
+        .then(favorite => {
+            res.render('users/dashboard', {user, favorite});
+        })
+        .catch(next)
 };
 
 module.exports.renderEditForm = (req, res, next) => {
