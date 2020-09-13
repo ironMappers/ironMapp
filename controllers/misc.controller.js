@@ -20,8 +20,10 @@ module.exports.createReview = (req, res, next) => {
         body: req.body.reviewBody
     });
 
-    newReview.save()
-        .then(review => res.json(review))
+    return newReview.save()
+        .then(review => {
+            return Review.findById(review.id).populate('user');
+        })
         .catch(next);
 };
 

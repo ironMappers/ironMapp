@@ -13,7 +13,7 @@ postForm.addEventListener('submit', event => {
             reviewBody
         })
         .then(review => {
-
+            console.log(review)
             //this can go in a function
             const newReview = `<article class="card mb-4 bx-2">
                                         <div class="d-flex justify-content-between align-items-center">

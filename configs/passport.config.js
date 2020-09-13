@@ -4,7 +4,7 @@ const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const SlackStrategy = require("passport-slack").Strategy;
 const User = require('../models/user.model');
 
-const randomPassword = () => Math.random().toString(36).substring(7)
+const randomPassword = () => Math.random().toString(36).substring(7);
 
 passport.serializeUser(function (user, done) {
     done(null, user._id);
@@ -57,10 +57,9 @@ const google = new GoogleStrategy(
     }
 );
 
-passport.use(google)
 
 const slack = new SlackStrategy(
-    {
+    { 
       clientID: process.env.SLACK_CLIENT_ID,
       clientSecret: process.env.SLACK_CLIENT_SECRET,
       callbackUrl: "/auth/slack",
@@ -96,6 +95,8 @@ const slack = new SlackStrategy(
     }
   );
   
-passport.use(slack)
+//this should probably be in app.js
+passport.use(slack);
+passport.use(google);
 
-module.exports = passport
+module.exports = passport;
