@@ -10,6 +10,13 @@ hbs.registerHelper('owner', (userId, elementId, options) => {
     return options.inverse(this);
 });
 
+hbs.registerHelper('available', product => {
+    if (product) {
+        return `${product} €`;
+    }
+    return 'Unavailable';
+});
+
 hbs.registerHelper('date', (date) => {
     const makeDoubleDigit = (fullDate) => fullDate.split(' ').map(num => (num.length < 2) ? '0' + num : num);
 

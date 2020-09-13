@@ -1,17 +1,19 @@
-<form action="" id="filter-form" class="d-flex mt-4">
-    <select name="region" id="region-selector" class="form-control">
-        <option value="">Elige una región</option>
-    </select>
-
-    <select name="province" id="province-selector" class="hidden form-control">
-    </select>
-
-    <select name="municipio" id="municipio-selector" class="hidden form-control">
-    </select>
-
-    <select name="fuel" id="fuel-selector" class="form-control">
-        <option value="">Tipo de combustible</option>
-    </select>
-
-    <button id="query-button" class="btn btn-primary">Buscar</button>
-</form>
+<div class=" filter container">
+    <form action="" id="filter-form" class="row">
+        <select name="region" id="region-selector" class="col-sm offset-md-2 form-control">
+            <option value="">Elige una región</option>
+        </select>
+        <p></p>
+        <select name="province" id="province-selector" class="col-sm hidden form-control">
+        </select>
+        <p></p>
+        <select name="municipio" id="municipio-selector" class="col-sm hidden form-control">
+        </select>
+        <p></p>
+        <select name="fuel" id="fuel-selector" class="col-sm form-control">
+            <option value="">Tipo de combustible</option>
+        </select>
+        <p></p>
+        <button id="query-button" class="col-sm btn btn-secondary">Buscar</button>
+    </form>   
+</div>

@@ -4,6 +4,13 @@ L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x
     maxZoom: 18,
 }).addTo(mymap);
 
+const gasIcon = L.icon({
+    iconUrl: '../img/gas_station.png',
+    iconSize:     [36, 53], // size of the icon
+    iconAnchor:   [17, 52] // point of the icon which will correspond to marker's location
+ // point from which the popup should open relative to the iconAnchor
+});
+
 const submitQueryButton = document.getElementById('query-button');
 let layerGroup = L.layerGroup().addTo(mymap);
 submitQueryButton.addEventListener('click', () => {
@@ -16,12 +23,15 @@ submitQueryButton.addEventListener('click', () => {
                 
                 const lat = (station.Latitud).replace(',', '.');
                 const lon = (station['Longitud (WGS84)']).replace(',', '.');
-                const marker = L.marker([lat, lon]);
-                markerArr.push(marker)
+                const marker = L.marker([lat, lon], {icon: gasIcon});
+                markerArr.push(marker);
 
                 marker.addTo(layerGroup);
                 marker.on('click', function(event) {
-                    const popup = L.popup();
+                    const popup = L.popup({
+                        offset: [-3, -53],
+                        className: 'custom-popup'
+                    });
                     popup
                         .setLatLng(event.latlng)
                         .setContent(`

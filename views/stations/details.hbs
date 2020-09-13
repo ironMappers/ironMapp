@@ -29,19 +29,39 @@
 
     <article class="mx-2">
         <h2>Prices</h2>
-        <ul class="d-flex justify-content-around">
-            <li>Gasoil:
-                <ul>
-                    <li> A: {{stationDetails.prices.gasoil.a}}</li>
-                    <li>B: {{stationDetails.prices.gasoil.b}}</li>
-                </ul>
-            </li>
-            <li> Petrol:
-                <ul>
-                    <li>95 E5: {{stationDetails.prices.petrol.octanes95E5}}</li>
-                    <li>98 E5: {{stationDetails.prices.petrol.octanes98E5}}</li>
-                </ul>
-            </li>
+        <ul class="d-flex justify-content-around prices">
+            <div class="fuel-type">
+                <li> <img src="/img/gasoil.png" alt="gasoil can" class="price-icon"> Gasoil:
+                    <ul>
+                        <li class="product"> A: {{available stationDetails.prices.gasoil.a}}</li>
+                        <li class="product">B: {{available stationDetails.prices.gasoil.b}}</li>
+                    </ul>
+                </li>
+            </div>
+            <div class="fuel-type">
+                <li> <img src="/img/petrol.png" alt="petrol pump" class="price-icon"> Petrol:
+                    <ul>
+                        <li class="product">95 E5: {{available stationDetails.prices.petrol.octanes95E5}}</li>
+                        <li class="product">98 E5: {{available stationDetails.prices.petrol.octanes98E5}}</li>
+                    </ul>
+                </li>
+            </div>
+            <div class="fuel-type">
+                <li> <img src="/img/biofuel.png" alt="gasoil can" class="price-icon"> Biofuel:
+                    <ul>
+                        <li class="product"> Biodiesel: {{available stationDetails.prices.bio.biodiesel}}</li>
+                        <li class="product"> Bioethanol: {{available stationDetails.prices.bio.bioetanol}}</li>
+                    </ul>
+                </li>
+            </div>
+            <div class="fuel-type">
+                <li> <img src="/img/gas.png" alt="gasoil can" class="price-icon"> Natural Gas:
+                    <ul>
+                        <li class="product"> Compressed: {{available stationDetails.prices.gas.compressed}}</li>
+                        <li class="product"> Liquefied: {{available stationDetails.prices.gas.liquefied}}</li>
+                    </ul>
+                </li>
+            </div>
         </ul>
     </article>
 
@@ -75,7 +95,7 @@
                         {{/owner}}
                     </div>
                 </div>
-                <div>
+                <div class="avatar">
                     <a href="/users/details/{{review.user.id}}">
                         <img src="{{review.user.avatar}}" alt="user avatar" class="review-avatar-img">
                     </a>
