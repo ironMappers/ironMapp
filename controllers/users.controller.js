@@ -14,7 +14,7 @@ const validationError = {
     }
 };
 
-module.exports.authGoogle = (req, res, next) => {
+module.exports.loginGoogle = (req, res, next) => {
     const passportController = passport.authenticate( "google",
         {
             scope: [
@@ -34,7 +34,7 @@ module.exports.authGoogle = (req, res, next) => {
     passportController(req, res, next);
 };
 
-module.exports.authSlack = (req, res, next) => {
+module.exports.loginSlack = (req, res, next) => {
     const passportController = passport.authenticate("slack", (error, user) => {
       if (error) {
         next(error);
