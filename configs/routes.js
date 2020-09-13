@@ -19,8 +19,8 @@ router.get('/', miscController.renderHome);
 
 /*AUTH*/
 
-router.get('/auth/google', sessionMiddleware.isNotAuthenticated, usersController.authGoogle);
-router.get('/auth/slack', sessionMiddleware.isNotAuthenticated, usersController.authSlack);
+router.get('/login/google', sessionMiddleware.isNotAuthenticated, usersController.loginGoogle);
+router.get('/login/slack', sessionMiddleware.isNotAuthenticated, usersController.loginSlack);
 
 router.get('/login', sessionMiddleware.isNotAuthenticated, usersController.renderLogin);
 router.post('/login', sessionMiddleware.isNotAuthenticated, usersController.doLogin);
