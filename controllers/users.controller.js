@@ -14,6 +14,39 @@ const validationError = {
     }
 };
 
+module.exports.loginGoogle = (req, res, next) => {
+    const passportController = passport.authenticate( "google",
+        {
+            scope: [
+              'https://www.googleapis.com/auth/userinfo.profile',
+              'https://www.googleapis.com/auth/userinfo.email'
+            ]
+        },
+        (error, user) => {
+            if (error) {
+                next(error);
+            } else {
+                req.session.userId = user._id;
+                res.redirect('/login');
+            }
+        }
+    )
+    passportController(req, res, next);
+};
+
+module.exports.loginSlack = (req, res, next) => {
+    const passportController = passport.authenticate("slack", (error, user) => {
+      if (error) {
+        next(error);
+      } else {
+        req.session.userId = user._id;
+        res.redirect("/login");
+      }
+    })
+  
+    passportController(req, res, next);
+}
+
 module.exports.renderLogin = (req, res, next) => {
     res.render('users/login');
 };
@@ -132,7 +165,6 @@ module.exports.renderDashboard = (req, res, next) => {
 
     Favorite.find({user})
         .then(favorite => {
-            console.log({user, favorite})
             res.render('users/dashboard', {user, favorite});
         })
         .catch(next)
