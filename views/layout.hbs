@@ -23,7 +23,7 @@
 </head>
 
 <body>
-    <nav class="d-flex justify-content-between m-2">
+    <nav class="d-flex justify-content-between m-4">
         {{> navbar}}
         {{#if currentUser }}
         {{> userNav}}
@@ -32,9 +32,11 @@
         {{/if}}
     </nav>
 
-    <main>
-        {{{body}}}
-    </main>
+    {{{body}}}
+
+    <footer>
+        <p>Made by <b>Ironmappers</b> team ❤️</p>
+    </footer>
 
     <script>
         const APP_URL = 'http://localhost:3000';
