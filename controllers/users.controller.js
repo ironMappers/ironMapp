@@ -14,7 +14,7 @@ const validationError = {
     }
 };
 
-module.exports.authGoogleCallback = (req, res, next) => {
+module.exports.authGoogle = (req, res, next) => {
     const passportController = passport.authenticate( "google",
         {
             scope: [
@@ -33,6 +33,19 @@ module.exports.authGoogleCallback = (req, res, next) => {
     )
     passportController(req, res, next);
 };
+
+module.exports.authSlack = (req, res, next) => {
+    const passportController = passport.authenticate("slack", (error, user) => {
+      if (error) {
+        next(error);
+      } else {
+        req.session.userId = user._id;
+        res.redirect("/login");
+      }
+    })
+  
+    passportController(req, res, next);
+}
 
 module.exports.renderLogin = (req, res, next) => {
     res.render('users/login');
