@@ -1,9 +1,9 @@
 <div class="container card mt-5">
-    <header class="py-4 d-flex justify-content-between station-title">
-        <h1>
+    <header class="py-4 d-flex justify-content-between station-title row">
+        <h1 class="col-sm">
             {{stationDetails.info.name}}
         </h1>
-        <h2 class="d-flex flex-column" id="address">
+        <h2 class="d-flex flex-column col-sm text-right" id="address">
             {{stationDetails.info.address.street}}
             <small id="locality">{{stationDetails.info.address.district}},
                 {{stationDetails.info.address.province}}</small>
@@ -29,8 +29,8 @@
 
     <article class="mx-2">
         <h2>Prices</h2>
-        <ul class="d-flex justify-content-around prices">
-            <div class="fuel-type">
+        <div class="row prices">
+            <div class="col-sm fuel-type">
                 <li> <img src="/img/gasoil.png" alt="gasoil can" class="price-icon"> Gasoil:
                     <ul>
                         <li class="product"> A: {{available stationDetails.prices.gasoil.a}}</li>
@@ -38,7 +38,7 @@
                     </ul>
                 </li>
             </div>
-            <div class="fuel-type">
+            <div class="fuel-type col-sm">
                 <li> <img src="/img/petrol.png" alt="petrol pump" class="price-icon"> Petrol:
                     <ul>
                         <li class="product">95 E5: {{available stationDetails.prices.petrol.octanes95E5}}</li>
@@ -46,7 +46,7 @@
                     </ul>
                 </li>
             </div>
-            <div class="fuel-type">
+            <div class="fuel-type col-sm">
                 <li> <img src="/img/biofuel.png" alt="gasoil can" class="price-icon"> Biofuel:
                     <ul>
                         <li class="product"> Biodiesel: {{available stationDetails.prices.bio.biodiesel}}</li>
@@ -54,7 +54,7 @@
                     </ul>
                 </li>
             </div>
-            <div class="fuel-type">
+            <div class="fuel-type col-sm">
                 <li> <img src="/img/gas.png" alt="gasoil can" class="price-icon"> Natural Gas:
                     <ul>
                         <li class="product"> Compressed: {{available stationDetails.prices.gas.compressed}}</li>
@@ -63,7 +63,7 @@
                 </li>
             </div>
         </ul>
-    </article>
+    </div>
 
     <hr>
 
