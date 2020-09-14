@@ -50,7 +50,12 @@ const createFavorites = (amount) => {
     for (let i = 0; i < amount; i++) {
         const newFavorite = new Favorite({
             user: users[randIndex(users)],
-            station: randStation()
+            station: {
+                IDEESS:'6341',
+                district: '5489',
+                address: "Calle San Gregorio, 21 Macotera, Salamanca",
+                owner: "PETRONOR"
+            }
         });
 
         favorites.push(newFavorite);
