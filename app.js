@@ -32,6 +32,6 @@ hbs.registerPartials('./views/partials');
 const routes = require('./configs/routes.js');
 app.use('/', routes);
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log('Server up and running!');
 });
