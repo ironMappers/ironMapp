@@ -7,6 +7,7 @@ const reviewBtns = document.querySelectorAll('.review-btns');
 postForm.addEventListener('submit', event => {
     //TODO: populate user data
     const reviewBody = document.getElementById('post-review-input').value;
+    const reviewElement = document.getElementById('post-review-input');
     event.preventDefault();
 
     axios.post(`${APP_URL}/review/create/${id}/${district}`, {
@@ -15,22 +16,35 @@ postForm.addEventListener('submit', event => {
         .then(review => {
             console.log(review)
             //this can go in a function
-            const newReview = `<article class="card mb-4 bx-2">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <p><b>${review.data.user.username} says:</b> ${review.data.body}</p>
-                                            <a href="/users/details/"${review.data.user}><img src="${review.user}" alt="user avatar" class="review-avatar-img"></a>
-                                        </div>
-                                        <div class="d-flex justify-content-between">
-                                            <small class="text-dark">${review.data.createdAt}</small>
+            const newReview = `<article class="card review">
+                <div class="review-content">
+                    <div class="review-first">
+                        <p>
+                            <b class="review-user">${review.data.user.username} says:</b>
+                            <span class="review-body">${review.data.body}</span>
+                        </p>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <small class="text-dark">${review.data.createdAt}</small>
 
-                                            <ul>
-                                                <a href="/review/edit/${review.data.id}" class="text-muted">Edit</a>
-                                                <a href="/review/delete/${review.data.id}" class="text-danger">Delete</a>
-                                            </ul>
-                                        </div>
-                                </article>`;
+
+                        <ul class="review-btns">
+                            <button value="${review.data.id}}/${review.data.user.id}"
+                                class="text-muted btn-station edit-btn">Edit</button>
+                            <button value="${review.data.id}/${review.data.user.id}"
+                                class="text-danger btn-station delete-btn">Delete</button>
+                        </ul>
+                    </div>
+                </div>
+                <div class="avatar">
+                    <a href="/users/details/${review.data.user.id}">
+                        <img src="${review.data.user.avatar}" alt="user avatar" class="review-avatar-img">
+                    </a>
+                </div>
+            </article>`;
 
             reviewsWrapper.innerHTML += newReview;
+            reviewElement.value = "";
         })
         .catch(e => console.error(e));
 });
