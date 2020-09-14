@@ -101,8 +101,8 @@ const seedDatabase = () => {
         .then(() => {
             console.log('Database wiped!');
 
-            createUsers(10);
-            createReviews(20);
+            createUsers(50);
+            createReviews(200);
             createFavorites(20);
             createRatings(10);
 
