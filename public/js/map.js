@@ -36,7 +36,7 @@ submitQueryButton.addEventListener('click', () => {
                         .setLatLng(event.latlng)
                         .setContent(`
                             <p>${station['Rótulo']}</p>
-                            <a href="http://localhost:3000/station/${station.IDEESS}/${station.IDMunicipio}">Visit Station</a>
+                            <a href="${APP_URL}/station/${station.IDEESS}/${station.IDMunicipio}">Visit Station</a>
                             `)
                         .openOn(mymap);
                 });
