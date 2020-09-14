@@ -26,7 +26,7 @@ const getStations = (query) => {
         console.error('Query Error');
         return;
     }
-    return axios.get('${PROXY_URL}' + urlQuery);
+    return axios.get(`${PROXY_URL} + ${urlQuery}`);
 };
 
 
