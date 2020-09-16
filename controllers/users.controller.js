@@ -42,10 +42,10 @@ module.exports.loginSlack = (req, res, next) => {
         req.session.userId = user._id;
         res.redirect("/login");
       }
-    })
+    });
   
     passportController(req, res, next);
-}
+};
 
 module.exports.renderLogin = (req, res, next) => {
     res.render('users/login');

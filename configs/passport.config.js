@@ -62,7 +62,7 @@ const slack = new SlackStrategy(
     { 
       clientID: process.env.SLACK_CLIENT_ID,
       clientSecret: process.env.SLACK_CLIENT_SECRET,
-      callbackUrl: "/auth/slack",
+      callbackUrl: "/login/slack",
     },
     (accessToken, refreshToken, profile, next) => {
       User.findOne({ "social.slack": profile.id })
@@ -88,10 +88,10 @@ const slack = new SlackStrategy(
               .then((user) => {
                 next(null, user);
               })
-              .catch((err) => next(err));
+              .catch(e => console.error(e));
           }
         })
-        .catch((err) => next(err));
+        .catch(e => console.error(e));
     }
   );
   
