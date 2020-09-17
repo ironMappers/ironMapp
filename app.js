@@ -20,7 +20,10 @@ app.use(session);
 app.use(sessionMiddleware.checkAuth);
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use((req, res, next) => {
+    res.locals.APP_URL = process.env.APP_URL || 'localhost:3000';
+    next();
+});
 
 /*VIEW ENGINE SETUP*/
 app.set('views', './views');
