@@ -1,5 +1,9 @@
+require('dotenv').config({
+  path: require('path').resolve(__dirname, '../.env')
+});
+
 const mongoose = require('mongoose');
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/ironmappers'
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/ironmappers';
 
 mongoose
   .connect(MONGODB_URI, {
