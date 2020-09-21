@@ -5,7 +5,6 @@ const reviews = document.querySelectorAll('.review');
 const reviewBtns = document.querySelectorAll('.review-btns');
 
 postForm.addEventListener('submit', event => {
-    //TODO: populate user data
     const reviewBody = document.getElementById('post-review-input').value;
     const reviewElement = document.getElementById('post-review-input');
     event.preventDefault();
@@ -14,7 +13,6 @@ postForm.addEventListener('submit', event => {
             reviewBody
         })
         .then(review => {
-            console.log(review)
             //this can go in a function
             const newReview = `<article class="card review">
                 <div class="review-content">

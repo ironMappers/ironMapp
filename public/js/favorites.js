@@ -11,25 +11,29 @@ const renderFavorite = () => {
 const invertBoolean = (value) => {
     if (value === 'true') {
         return 'false';
-    } 
+    }
     return 'true';
 };
 
-const addClickToFavorite = favoriteBtn.addEventListener('click', event => {
-   favoriteBtn.value = invertBoolean(favoriteBtn.value);
-   renderFavorite();
-    axios.put(`${APP_URL}/favorite`, {
-       station: {
-           district ,
-           IDEESS: id,
-           address,
-           owner
-       }      
-    })   
-        .then(favorite => console.log(favorite))
-        .catch(e => console.error(e));
-});
+const addClickToFavorite = () => {
+    favoriteBtn.addEventListener('click', event => {
+        favoriteBtn.value = invertBoolean(favoriteBtn.value);
+        renderFavorite();
+        axios.put(`${APP_URL}/favorite`, {
+                station: {
+                    district,
+                    IDEESS: id,
+                    address,
+                    owner
+                }
+            })
+            .then(favorite => console.log(favorite))
+            .catch(e => console.error(e));
+    });
+}
 
-const addWarningToFavorite = favoriteBtn.addEventListener('click', event => {
-    renderWarning();
-});
+const addWarningToFavorite = () => {
+    favoriteBtn.addEventListener('click', event => {
+        renderWarning();
+    });
+};

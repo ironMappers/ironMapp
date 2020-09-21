@@ -32,11 +32,12 @@ submitQueryButton.addEventListener('click', () => {
                         offset: [-3, -53],
                         className: 'custom-popup'
                     });
+                    const stationUrl = `${APP_URL}/station/${station.IDEESS}/${station.IDMunicipio}`;
                     popup
                         .setLatLng(event.latlng)
                         .setContent(`
                             <p>${station['Rótulo']}</p>
-                            <a href="${APP_URL}station/${station.IDEESS}/${station.IDMunicipio}">Visit Station</a>
+                            <a href="${stationUrl}">Visit Station</a>
                             `)
                         .openOn(mymap);
                 });

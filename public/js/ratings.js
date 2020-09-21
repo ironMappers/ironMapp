@@ -15,20 +15,24 @@ const renderRating = (score) => {
     }
 };
 
-const addClickToRatings = ratingBtns.forEach(btn => btn.addEventListener('click', event => {
-    const score = btn.value;
-    renderRating(score);
-    axios.put(`${APP_URL}/rating`, {
-       score,
-       station: {
-           IDEESS: id,
-           district: district
-       }
-    })
-        .then(rating => console.log(rating))
-        .catch(e => console.error(e));
-}));
+const addClickToRatings = () => {
+    ratingBtns.forEach(btn => btn.addEventListener('click', event => {
+        const score = btn.value;
+        renderRating(score);
+        axios.put(`${APP_URL}/rating`, {
+                score,
+                station: {
+                    IDEESS: id,
+                    district: district
+                }
+            })
+            .then(rating => console.log(rating))
+            .catch(e => console.error(e));
+    }));
+};
 
-const addWarningToRatings = ratingBtns.forEach(btn => btn.addEventListener('click', event => {
-    renderWarning();
-}));
+const addWarningToRatings = () => {
+    ratingBtns.forEach(btn => btn.addEventListener('click', event => {
+        renderWarning();
+    }));
+};
