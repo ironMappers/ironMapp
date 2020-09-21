@@ -26,7 +26,7 @@
         <div class="mt-4">
             {{#each favorite}}
             <article class="favorite-station">
-                <a href="http://localhost:3000/station/{{this.station.IDEESS}}/{{this.station.district}}" class="favorite-station__link">
+                <a href="{{APP_URL}}/{{this.station.IDEESS}}/{{this.station.district}}" class="favorite-station__link">
                     <h4>{{this.station.owner}}</h4>
                     <h5>{{this.station.address}}</h5>
                 </a>
