@@ -1,7 +1,11 @@
 body,
 html {
-    height: 100% !important;
-    min-height: 100 !important%;
+    /* height: 100% !important; */
+    min-height: 100% !important;
+}
+
+body {
+    position: relative;
 }
 
 .hidden {
@@ -19,6 +23,10 @@ html {
 #mapid {
     height: 76vh;
     margin: 2rem;
+}
+
+#map-filter {
+    padding-bottom: 6.5rem;
 }
 
 .hidden {
@@ -72,6 +80,10 @@ html {
 
 .warning {
     border: 1px dashed red;
+}
+
+#reviews-section {
+    margin-bottom: 7rem;
 }
 
 .review {
@@ -224,7 +236,7 @@ a:hover {
 .btn-outline-danger:hover,
 .btn-danger:active,
 .btn-danger:focus {
-    background-color: #f3d503!important;
+    background-color: #f3d503 !important;
     color: white;
     outline: none !important;
     border: none;
@@ -244,11 +256,37 @@ a:hover {
     height: 72vh;
 }
 
+.favorite-station {
+    background-color: #F7941D;
+    box-shadow: 2px 2px 7px 3px #969696;
+    width: fit-content;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1.2rem;
+}
+
+.favorite-station:hover {
+    box-shadow: 0px 1px 10px 4px #001F3F;
+}
+
+.favorite-station__link {
+    color: #001F3F;
+}
+
+.favorite-station__link:hover {
+    color: white;
+}
+
+#dashboard-container {
+    padding-bottom: 12rem;
+}
+
 footer {
     background-color: #6c757d;
     color: #FFF;
     text-align: center;
     bottom: 0;
+    position: absolute;
     margin-top: 3.5rem;
     width: 100%;
     height: 10vh;
