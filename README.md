@@ -22,7 +22,6 @@ Check out a live demo [Here!](https://iron-mapp.herokuapp.com/)
 ### Features
 * Search can be narrowed down by region => province => district 
 
-![Map Popups](./screenshots/map_popups.png)
 
 * Search query can include fuel type
 * Login through Google / Slack
@@ -30,7 +29,7 @@ Check out a live demo [Here!](https://iron-mapp.herokuapp.com/)
 * Logged users can make/delete/edit reviews for any station
 * Logged users can rate and/or save a station as favourite
 
-![Station Details](./screenshots/station_details.png)
+![Map Popups](./screenshots/map_popups.png)
 
 ### Technologies
 * Express web application 
