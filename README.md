@@ -15,6 +15,7 @@ The idea was to create a platform where users could compare the current prices f
 One of the core values for this project was using open/public resources whenever possible (more detail on the APIs later)
 Another was not locking users behind a login screen. Thus authentication is encouraged for full functionallity but not required for a basic use of the site.
 
+Check out a live demo [Here!](https://iron-mapp.herokuapp.com/)
 
 ## Technical information
 
