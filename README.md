@@ -10,18 +10,26 @@ ironMapp is a map-based web application centered around petrol stations in Spain
 
 The idea was to create a platform where users could compare the current prices for petrol in different stations based on their location. 
 
+![Map view](./screenshots/map.png)
+
 One of the core values for this project was using open/public resources whenever possible (more detail on the APIs later)
 Another was not locking users behind a login screen. Thus authentication is encouraged for full functionallity but not required for a basic use of the site.
+
 
 ## Technical information
 
 ### Features
 * Search can be narrowed down by region => province => district 
+
+![Map Popups](./screenshots/map_popups.png)
+
 * Search query can include fuel type
 * Login through Google / Slack
 * Password encryption
 * Logged users can make/delete/edit reviews for any station
 * Logged users can rate and/or save a station as favourite
+
+![Station Details](./screenshots/station_details.png)
 
 ### Technologies
 * Express web application 
